@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#172554">
+<title>Thai Primary ESL SmartBoard – Semester 2</title>
+<style>
+:root{--navy:#172554;--blue:#1d4ed8;--cyan:#0891b2;--ink:#172033;--muted:#64748b;--line:#cbd5e1;--pale:#eff6ff;--green:#15803d}
+*{box-sizing:border-box}body{margin:0;background:#f1f5f9;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+header{background:linear-gradient(120deg,#172554,#1d4ed8,#0891b2);color:white;text-align:center;padding:24px 16px}
+header h1{font-size:clamp(25px,4vw,38px);margin:0}header p{font-size:clamp(14px,2.5vw,19px);margin:9px 0 0}
+main{max-width:1250px;margin:auto;padding:14px}.panel{background:white;border:1px solid var(--line);border-radius:17px;padding:16px;margin-bottom:14px;box-shadow:0 3px 14px #0f172a0b}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px}
+label{font-weight:700;display:block;margin:0 0 6px}select,button,input{font:inherit;border-radius:10px;padding:12px;border:1px solid #94a3b8}
+select{width:100%;min-height:48px;background:white;color:var(--ink)}button{background:var(--blue);color:white;border:0;font-weight:700;cursor:pointer}
+button.secondary{background:#e0f2fe;color:#075985;border:1px solid #7dd3fc}
+input,textarea{width:100%;background:white;color:var(--ink)}textarea{min-height:82px;resize:vertical}.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.formhint{font-size:13px;color:var(--muted);line-height:1.45}button.light{background:#e2e8f0;color:#172033}button:disabled{opacity:.5}
+h2{margin:0 0 12px;color:#1e3a8a;font-size:24px}h3{margin:0 0 10px}.meta{font-size:14px;color:#475569;line-height:1.5;margin:7px 0}
+.status{background:#ecfdf5;border:1px solid #86efac;color:#166534;border-radius:10px;padding:10px;margin-top:12px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:15px;margin:8px 0}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.tabs button{background:#dbeafe;color:#1e3a8a;border:1px solid #93c5fd}.tabs button.active{background:var(--blue);color:white}
+.bigword{text-align:center;font-size:clamp(30px,6vw,54px);font-weight:800;color:var(--blue);margin:12px}
+.emoji{text-align:center;font-size:58px}.meaning{text-align:center;font-size:20px;color:#334155;min-height:28px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.sentence{font-size:21px;line-height:1.5;font-weight:700;background:var(--pale);padding:14px;border-radius:12px}
+.wordchips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.wordchips button{background:#dbeafe;color:#1e3a8a;border:1px solid #93c5fd}
+.feedback{font-weight:bold;min-height:24px;margin-top:8px}.gamegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:9px}
+.gamegrid button{text-align:left;background:#f0f9ff;color:#0c4a6e;border:1px solid #7dd3fc;padding:13px}
+.small{font-size:13px;color:var(--muted)}.bankgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:9px}.banktile{background:#eff6ff;border:1px solid #93c5fd;border-radius:12px;padding:12px;text-align:center;color:#1e3a8a;cursor:pointer}.banktile strong{display:block;font-size:18px}.picturegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}.picturetile{border:2px solid #cbd5e1;border-radius:14px;padding:12px;text-align:center;background:#f8fafc;cursor:pointer}.picturetile.selected{border-color:#2563eb;background:#dbeafe}.picturetile .pic{font-size:42px;display:block}.matchwords{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.matchwords button{background:#e0f2fe;color:#075985;border:1px solid #7dd3fc}.matchwords button:disabled{opacity:.45}.hidden{display:none!important}.progress{height:9px;background:#e2e8f0;border-radius:20px;overflow:hidden}.progress span{display:block;height:100%;background:var(--cyan);width:0}
+footer{text-align:center;padding:20px;color:var(--muted);font-size:13px}
+@media(max-width:680px){main{padding:9px}.panel{padding:12px}.grid{grid-template-columns:1fr}.tabs button{flex:1 1 43%;font-size:13px;padding:10px 6px}.emoji{font-size:48px}}
+@media print{header,.controls,.tabs,.actions,footer,.status{display:none!important}body{background:white}.panel{box-shadow:none;border:0}}
+
+/* Teacher-first SmartBoard display enhancements */
+body{background:#eaf0f8}main{max-width:1500px;padding:10px}.panel{padding:13px;margin-bottom:10px;border-radius:13px}.teacher-console{position:sticky;top:0;z-index:20;background:#f8fbff;border:2px solid #1d4ed8;box-shadow:0 5px 18px #0f172a20}.now-teaching{background:#172554;color:white;padding:13px 16px;border-radius:10px;font-weight:800;font-size:clamp(17px,2.2vw,27px);letter-spacing:.2px}.teacher-tools{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;align-items:end;margin-top:10px}.teacher-tools button{min-height:48px}.teacher-tools select{min-height:48px}.progress-title{display:flex;justify-content:space-between;gap:8px;margin:10px 0 5px}.progress-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.progress-chip{font-size:12px;padding:6px 9px;border-radius:20px;background:#e2e8f0;color:#475569;font-weight:700}.progress-chip.done{background:#dcfce7;color:#166534}.progress-chip.active{background:#fef3c7;color:#92400e}.teacher-output{font-size:clamp(19px,3vw,34px);font-weight:800;line-height:1.35;padding:18px;background:#eff6ff;border:2px solid #93c5fd;border-radius:12px;margin-top:10px}.extra-panel summary{font-size:clamp(19px,2.4vw,27px);font-weight:800;color:#1e3a8a;cursor:pointer;padding:5px}.extra-content{font-size:clamp(17px,2vw,22px);line-height:1.5}.role-card{background:#f0f9ff;border:2px solid #7dd3fc;border-radius:13px;padding:13px;margin:9px 0}.role-card h3{font-size:1.15em}.model-dialogue{background:white;border-radius:9px;padding:12px;margin-top:8px}.writing-model{background:#f0fdf4;border:1px solid #86efac;border-radius:12px;padding:14px;line-height:1.6}.large-display{font-size:clamp(22px,3vw,38px);font-weight:800;line-height:1.4}.presentation-mode #customBuilder,.presentation-mode #tabs,.presentation-mode .teacher-tools label[for="difficulty"]{display:none!important}.presentation-mode main{max-width:1700px}.presentation-mode .teacher-console{position:static}.answer-correct{background:#dcfce7!important;color:#166534!important;border:2px solid #16a34a!important}.answer-wrong{background:#fee2e2!important;color:#991b1b!important;border:2px solid #dc2626!important}
+@media(max-width:700px){.teacher-tools{grid-template-columns:repeat(2,minmax(0,1fr))}.teacher-tools button{font-size:13px;padding:9px}.now-teaching{font-size:16px}.teacher-console{position:relative}.progress-chip{font-size:11px}}
+@media print{.teacher-console,.extra-panel{display:none!important}}
+
+</style>
+</head>
+<body>
+<header><h1>Thai Primary ESL SmartBoard</h1><p>Semester 2 • Prathomsuksa 4, 5 and 6 • Communication & General English</p></header>
+<main>
+
+<section class="panel teacher-console" id="teacherConsole">
+ <div class="now-teaching" id="nowTeaching">📚 NOW TEACHING • Loading lesson…</div>
+ <div class="teacher-tools">
+  <div><label for="difficulty">Challenge level</label><select id="difficulty"><option value="easy">🟢 EASY</option><option value="hard">🟠 HARD</option><option value="harder">🔴 HARDER</option></select></div>
+  <button id="presentationToggle" class="secondary">📺 Presentation mode</button>
+  <button id="randomChallenge">🎲 Random student challenge</button>
+  <button id="nextActivity">Next activity →</button>
+ </div>
+ <div class="progress-title"><b>Lesson progress</b><span id="progressText">0 of 7 complete</span></div>
+ <div class="progress"><span id="lessonProgress"></span></div>
+ <div class="progress-chips" id="progressChips"></div>
+ <div class="teacher-output hidden" id="teacherOutput" aria-live="polite"></div>
+</section>
+<section class="panel extra-panel" id="communicationPractice">
+ <details open><summary>🗣️ Communication Practice • Role-play cards</summary>
+ <p class="meta">Teacher-led speaking practice. Choose a role, read the prompt, then let students perform.</p>
+ <div id="roleplayContent" class="extra-content"></div>
+ <div class="actions"><button id="newRoleplay">New role-play challenge</button><button class="secondary" id="roleplayComplete">Mark speaking practice complete ✓</button></div>
+ </details>
+</section>
+<section class="panel extra-panel" id="writingWorkshop">
+ <details open><summary>✍️ Writing Workshop • Paragraph practice</summary>
+ <p class="meta">Teacher-led writing tasks adjusted for grade and challenge level.</p>
+ <div id="writingContent" class="extra-content"></div>
+ <div class="actions"><button class="secondary" id="writingComplete">Mark writing practice complete ✓</button></div>
+ </details>
+</section>
+
+<section class="panel">
+ <div>
+  <label for="curriculumSelect">Choose a lesson – Part → Grade → Unit → Topic</label>
+  <select id="curriculumSelect" aria-label="Choose a curriculum topic"><option>Loading all lessons…</option></select>
+  <p class="small">Open the list and choose any topic. The vocabulary, meanings, sentences, activities, quiz, worksheet and games will change to match that lesson.</p>
+ </div>
+ <div class="hidden" aria-hidden="true">
+  <select id="part"><option value="Communication English">Communication English</option><option value="General English">General English</option></select>
+  <select id="grade"><option value="P4">P4</option><option value="P5">P5</option><option value="P6">P6</option></select>
+  <select id="unit"></select><select id="topic"></select>
+ </div>
+ <div class="meta" id="courseLine">PART 1: COMMUNICATION ENGLISH • Prathomsuksa 4 (P4) • Semester 2</div>
+ <div class="meta" id="outcome"></div>
+ <div class="status" id="status" role="status" aria-live="polite">Curriculum data is built into this page. Choose a grade, unit and topic to load a lesson.</div>
+</section>
+<section class="panel" id="customBuilder">
+ <h2>＋ Create your own unit and topics</h2>
+ <p class="meta">Add a unit for any subject or grade. The SmartBoard will generate a lesson with vocabulary, meanings, model sentences, speaking practice, quizzes, worksheets and games. Your custom lessons are saved on this device.</p>
+ <div class="formgrid">
+  <div><label for="customPart">Subject</label><select id="customPart"><option>Communication English</option><option>General English</option></select></div>
+  <div><label for="customGrade">Grade</label><select id="customGrade"><option>P4</option><option>P5</option><option>P6</option></select></div>
+  <div><label for="customUnit">Unit name</label><input id="customUnit" placeholder="e.g. Unit 5 – At the Restaurant"></div>
+  <div><label for="customTopic">Topic name</label><input id="customTopic" placeholder="e.g. Ordering food"></div>
+ </div>
+ <p><label for="customWords">Optional: your 7 vocabulary words and meanings</label><textarea id="customWords" placeholder="Example: menu: a list of food; waiter: a person who serves food; bill: the money to pay"></textarea></p>
+ <p class="formhint">Enter up to 7 word: meaning pairs, separated by semicolons or new lines. Leave blank and the SmartBoard will choose suitable starter vocabulary based on your topic.</p>
+ <div class="actions"><button id="addCustomLesson">Create and add topic</button><button class="light" id="clearCustomForm">Clear form</button><button class="secondary" id="deleteCustomLessons">Delete my custom lessons</button></div>
+ <div class="status" id="customStatus" aria-live="polite">No custom lessons added yet.</div>
+</section>
+<section class="panel">
+ <h2 id="lessonTitle">Unit 1: Good Health — Talking about food</h2>
+ <div class="meta" id="objective"></div>
+ <div class="grid">
+  <div class="card"><h3>Today’s 7 vocabulary words</h3><div id="vocabList"></div></div>
+  <div class="card"><h3>Useful model sentences</h3><div id="modelSentences"></div></div>
+ </div>
+ <div class="card"><h3>Teaching sequence • 30–40 minutes</h3><ol id="teachingSteps"></ol></div>
+ <div class="grid">
+  <div class="card"><h3>Speaking and pair practice</h3><div id="speaking"></div></div>
+  <div class="card"><h3>Listening practice</h3><p id="listeningText"></p><button class="secondary" id="listenLesson">🔊 Read listening text</button></div>
+ </div>
+ <div class="card"><h3>Quick assessment</h3><div id="assessment"></div></div>
+</section>
+<nav class="tabs" id="tabs">
+ <button class="active" data-tab="flash">1. Flashcards</button><button data-tab="builder">2. Sentence Builder</button>
+ <button data-tab="missing">3. Missing Words</button><button data-tab="choice">4. Multiple Choice</button>
+ <button data-tab="quiz">5. Quick Quiz</button><button data-tab="wordbank">6. Word Bank</button><button data-tab="picturematch">7. Picture Match</button><button data-tab="worksheet">8. Worksheet</button><button data-tab="games">9. 10 Mini-Games</button>
+</nav>
+<section class="panel" id="flash">
+ <h2>Vocabulary Flashcards</h2><div class="card"><div class="emoji" id="flashEmoji">🍚</div><div class="bigword" id="flashWord">Rice</div><div class="meaning" id="flashMeaning">a food we eat with meals</div><div class="actions" style="justify-content:center"><button class="secondary" id="speakWord">🔊 Listen</button><button class="secondary" id="meaningToggle">Show / hide meaning</button></div></div>
+ <div class="actions" style="justify-content:space-between"><button class="light" id="prev">← Previous</button><b id="cardCount">1 / 7</b><button id="next">Next →</button></div>
+</section>
+<section class="panel hidden" id="builder">
+ <h2>Interactive Sentence Builder</h2><p class="meta">Tap the words in the correct order to build a sentence.</p><div class="sentence" id="targetSentence">I like rice.</div><div class="wordchips" id="wordBank"></div><h3>Your sentence</h3><div class="sentence" id="builtSentence" aria-live="polite"> </div><div class="actions"><button id="checkBuild">Check sentence</button><button class="light" id="resetBuild">Reset</button><button class="secondary" id="newBuild">New sentence</button></div><div class="feedback" id="buildFeedback"></div>
+</section>
+<section class="panel hidden" id="missing"><h2>Missing Words</h2><p class="sentence" id="missingQ"></p><div class="actions" id="missingChoices"></div><div class="feedback" id="missingFeedback"></div><button class="light" id="missingNext">Next question</button></section>
+<section class="panel hidden" id="choice"><h2>Multiple Choice A / B / C</h2><p class="sentence" id="choiceQ"></p><div id="choiceOptions"></div><div class="feedback" id="choiceFeedback"></div><button class="light" id="choiceNext">Next question</button></section>
+<section class="panel hidden" id="quiz"><h2>Quick Quiz • 5 questions</h2><div class="progress"><span id="quizBar"></span></div><p class="meta" id="quizCount">Question 1 of 5</p><p class="sentence" id="quizQ"></p><div id="quizOptions"></div><div class="feedback" id="quizFeedback"></div><div class="actions"><button id="quizNext">Next</button><button class="light" id="quizRestart">Restart quiz</button></div><p id="quizScore"></p></section>
+<section class="panel hidden" id="wordbank"><h2>Topic Word Bank</h2><p class="meta">All seven words for this topic. Tap each word to reveal its meaning, then say a sentence using it.</p><div class="bankgrid" id="wordBankGrid"></div><div class="card" id="wordBankMeaning" aria-live="polite">Choose a word to see its meaning.</div><div class="actions"><button class="secondary" id="speakWordBank">🔊 Listen to all seven words</button><button class="light" id="shuffleWordBank">Shuffle word bank</button></div></section>
+<section class="panel hidden" id="picturematch"><h2>Match the Pictures to the Words</h2><p class="meta">Choose a picture, then tap the matching word. Match all seven pictures for this topic.</p><div class="picturegrid" id="pictureGrid"></div><h3>Word choices</h3><div class="matchwords" id="matchWords"></div><div class="feedback" id="matchFeedback" aria-live="polite">Choose a picture to begin.</div><div class="actions"><button class="light" id="resetPictureMatch">Start again</button></div></section>
+<section class="panel hidden" id="worksheet"><h2>Printable Class Worksheet</h2><div id="worksheetContent"></div><div class="actions"><button onclick="window.print()">Print worksheet</button><button class="secondary" id="refreshWorksheet">New worksheet</button></div></section>
+<section class="panel hidden" id="games"><h2>10 Topic-Based Mini-Games</h2><p class="meta">Every game below uses the vocabulary and sentences for the selected topic.</p><div class="gamegrid" id="gameGrid"></div><div class="card hidden" id="gameArea"></div></section>
+</main>
+<footer>Self-contained classroom resource • Works offline when opened in a browser • Best opened from your published GitHub Pages website</footer>
+<script>
+"use strict";
+const CURRICULUM = {"P4": {"Communication English": [["Unit 1 – Good Health", "Talking about food", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "food"], ["Unit 1 – Good Health", "Talking about exercise", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "exercise"], ["Unit 1 – Good Health", "Cleanliness and personal hygiene", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "hygiene"], ["Unit 1 – Good Health", "Rest and sleep", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "sleep"], ["Unit 1 – Good Health", "Health check-ups", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "checkup"], ["Unit 1 – Good Health", "Talking about what someone has got", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "checkup"], ["Unit 1 – Good Health", "Describing how to make food and drinks", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "cooking"], ["Unit 2 – All Year Long", "Counting ordinal numbers up to 31st", "Provide information and understand the importance of festivals, celebrations and special days, including Christmas, New Year’s Day and Valentine’s Day.", "ordinal"], ["Unit 2 – All Year Long", "Days of the week", "Provide information and understand the importance of festivals, celebrations and special days, including Christmas, New Year’s Day and Valentine’s Day.", "calendar"], ["Unit 2 – All Year Long", "Talking about the calendar", "Provide information and understand the importance of festivals, celebrations and special days, including Christmas, New Year’s Day and Valentine’s Day.", "calendar"], ["Unit 2 – All Year Long", "Dates, months and years", "Provide information and understand the importance of festivals, celebrations and special days, including Christmas, New Year’s Day and Valentine’s Day.", "calendar"], ["Unit 2 – All Year Long", "Public holidays", "Provide information and understand the importance of festivals, celebrations and special days, including Christmas, New Year’s Day and Valentine’s Day.", "holidays"], ["Unit 2 – All Year Long", "Festivals and celebrations", "Provide information and understand the importance of festivals, celebrations and special days, including Christmas, New Year’s Day and Valentine’s Day.", "festivals"], ["Unit 2 – All Year Long", "Birthdays and special days", "Provide information and understand the importance of festivals, celebrations and special days, including Christmas, New Year’s Day and Valentine’s Day.", "celebrations"], ["Unit 3 – All Around the World", "Counting ordinal numbers", "Provide information about festivals, celebrations, special days and the lifestyles and cultures of native speakers.", "ordinal"], ["Unit 3 – All Around the World", "Talking about dates, months and years", "Provide information about festivals, celebrations, special days and the lifestyles and cultures of native speakers.", "calendar"], ["Unit 3 – All Around the World", "Public holidays and festivals", "Provide information about festivals, celebrations, special days and the lifestyles and cultures of native speakers.", "holidays"], ["Unit 3 – All Around the World", "Weather and weather forecasts", "Provide information about festivals, celebrations, special days and the lifestyles and cultures of native speakers.", "weather"], ["Unit 3 – All Around the World", "Seasons and climate", "Provide information about festivals, celebrations, special days and the lifestyles and cultures of native speakers.", "seasons"], ["Unit 3 – All Around the World", "Temperature and clothing", "Provide information about festivals, celebrations, special days and the lifestyles and cultures of native speakers.", "seasons"], ["Unit 3 – All Around the World", "Let’s Celebrate", "Provide information about festivals, celebrations, special days and the lifestyles and cultures of native speakers.", "festivals"], ["Unit 3 – All Around the World", "Countries and nationalities", "Provide information about festivals, celebrations, special days and the lifestyles and cultures of native speakers.", "countries"], ["Unit 3 – All Around the World", "Traditional clothing, food and drinks", "Provide information about festivals, celebrations, special days and the lifestyles and cultures of native speakers.", "culture"]], "General English": [["Unit 1 – Healthy Living, Food and Drink", "Vegetables", "Learn vocabulary and sentence structures related to vegetables and fruits. Practise transferring and exchanging information and expressing likes and dislikes.", "produce"], ["Unit 1 – Healthy Living, Food and Drink", "Fruits", "Learn vocabulary and sentence structures related to vegetables and fruits. Practise transferring and exchanging information and expressing likes and dislikes.", "produce"], ["Unit 1 – Healthy Living, Food and Drink", "Food and drinks", "Learn vocabulary and sentence structures related to vegetables and fruits. Practise transferring and exchanging information and expressing likes and dislikes.", "food"], ["Unit 1 – Healthy Living, Food and Drink", "Healthy eating", "Learn vocabulary and sentence structures related to vegetables and fruits. Practise transferring and exchanging information and expressing likes and dislikes.", "healthyfood"], ["Unit 1 – Healthy Living, Food and Drink", "Expressing likes and dislikes", "Learn vocabulary and sentence structures related to vegetables and fruits. Practise transferring and exchanging information and expressing likes and dislikes.", "food"], ["Unit 1 – Healthy Living, Food and Drink", "Asking and answering questions about food", "Learn vocabulary and sentence structures related to vegetables and fruits. Practise transferring and exchanging information and expressing likes and dislikes.", "food"], ["Unit 1 – Healthy Living, Food and Drink", "Describing food", "Learn vocabulary and sentence structures related to vegetables and fruits. Practise transferring and exchanging information and expressing likes and dislikes.", "food"], ["Unit 2 – My Free Time", "Playing sports", "Develop vocabulary and question-and-answer sentences about free-time activities.", "hobbies"], ["Unit 2 – My Free Time", "Watching television", "Develop vocabulary and question-and-answer sentences about free-time activities.", "hobbies"], ["Unit 2 – My Free Time", "Reading books", "Develop vocabulary and question-and-answer sentences about free-time activities.", "hobbies"], ["Unit 2 – My Free Time", "Singing", "Develop vocabulary and question-and-answer sentences about free-time activities.", "hobbies"], ["Unit 2 – My Free Time", "Free-time activities", "Develop vocabulary and question-and-answer sentences about free-time activities.", "hobbies"], ["Unit 2 – My Free Time", "Asking and answering questions about hobbies", "Develop vocabulary and question-and-answer sentences about free-time activities.", "hobbies"], ["Unit 2 – My Free Time", "Expressing likes and dislikes", "Develop vocabulary and question-and-answer sentences about free-time activities.", "hobbies"], ["Unit 3 – Weather and Season", "Weather vocabulary", "Learn vocabulary and related sentences to communicate information about weather, seasons, festivals and celebrations.", "weather"], ["Unit 3 – Weather and Season", "Sunny, rainy and cloudy", "Learn vocabulary and related sentences to communicate information about weather, seasons, festivals and celebrations.", "weather"], ["Unit 3 – Weather and Season", "Hot and cold weather", "Learn vocabulary and related sentences to communicate information about weather, seasons, festivals and celebrations.", "weather"], ["Unit 3 – Weather and Season", "Seasons", "Learn vocabulary and related sentences to communicate information about weather, seasons, festivals and celebrations.", "seasons"], ["Unit 3 – Weather and Season", "Weather forecasts", "Learn vocabulary and related sentences to communicate information about weather, seasons, festivals and celebrations.", "weather"], ["Unit 3 – Weather and Season", "Festivals and celebrations", "Learn vocabulary and related sentences to communicate information about weather, seasons, festivals and celebrations.", "festivals"], ["Unit 3 – Weather and Season", "Seasonal clothing", "Learn vocabulary and related sentences to communicate information about weather, seasons, festivals and celebrations.", "seasons"], ["Unit 4 – Animals", "Farm animals", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "animals"], ["Unit 4 – Animals", "Wild animals", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "landanimals"], ["Unit 4 – Animals", "Sea animals", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "seaanimals"], ["Unit 4 – Animals", "Animal names", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "animals"], ["Unit 4 – Animals", "Animal characteristics", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "animals"], ["Unit 4 – Animals", "Describing animals", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "animals"], ["Unit 4 – Animals", "Asking and answering questions about animals", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "animals"]]}, "P5": {"Communication English": [["Unit 1 – Healthy Food", "Food and drinks", "Develop English communication skills through vocabulary and sentence structures related to food, drinks and health. Practise listening, speaking, exchanging information and expressing ideas.", "food"], ["Unit 1 – Healthy Food", "Healthy and unhealthy food", "Develop English communication skills through vocabulary and sentence structures related to food, drinks and health. Practise listening, speaking, exchanging information and expressing ideas.", "healthyfood"], ["Unit 1 – Healthy Food", "Vegetables and fruits", "Develop English communication skills through vocabulary and sentence structures related to food, drinks and health. Practise listening, speaking, exchanging information and expressing ideas.", "produce"], ["Unit 1 – Healthy Food", "Healthy eating habits", "Develop English communication skills through vocabulary and sentence structures related to food, drinks and health. Practise listening, speaking, exchanging information and expressing ideas.", "healthyfood"], ["Unit 1 – Healthy Food", "Exercise and physical activity", "Develop English communication skills through vocabulary and sentence structures related to food, drinks and health. Practise listening, speaking, exchanging information and expressing ideas.", "exercise"], ["Unit 1 – Healthy Food", "Sea and land animals (separate topic/unit)", "Develop English communication skills through vocabulary and sentence structures related to food, drinks and health. Practise listening, speaking, exchanging information and expressing ideas.", "animals"], ["Unit 2 – Sea and Land Animals", "Land animals", "Develop English communication skills through familiar topics related to land and marine animals. Learn vocabulary, descriptions and comparisons for confident conversations.", "landanimals"], ["Unit 2 – Sea and Land Animals", "Sea animals", "Develop English communication skills through familiar topics related to land and marine animals. Learn vocabulary, descriptions and comparisons for confident conversations.", "seaanimals"], ["Unit 2 – Sea and Land Animals", "Animal names and vocabulary", "Develop English communication skills through familiar topics related to land and marine animals. Learn vocabulary, descriptions and comparisons for confident conversations.", "animals"], ["Unit 2 – Sea and Land Animals", "Describing animals", "Develop English communication skills through familiar topics related to land and marine animals. Learn vocabulary, descriptions and comparisons for confident conversations.", "animals"], ["Unit 2 – Sea and Land Animals", "Animal characteristics", "Develop English communication skills through familiar topics related to land and marine animals. Learn vocabulary, descriptions and comparisons for confident conversations.", "animals"], ["Unit 2 – Sea and Land Animals", "Comparing animals", "Develop English communication skills through familiar topics related to land and marine animals. Learn vocabulary, descriptions and comparisons for confident conversations.", "animals"], ["Unit 2 – Sea and Land Animals", "Asking and answering questions about animals", "Develop English communication skills through familiar topics related to land and marine animals. Learn vocabulary, descriptions and comparisons for confident conversations.", "animals"]], "General English": [["Unit 1 – Food and Drink", "Vegetables", "Develop vocabulary and sentence structures related to food, drinks, vegetables and fruits. Practise exchanging information and expressing likes and dislikes.", "produce"], ["Unit 1 – Food and Drink", "Fruits", "Develop vocabulary and sentence structures related to food, drinks, vegetables and fruits. Practise exchanging information and expressing likes and dislikes.", "produce"], ["Unit 1 – Food and Drink", "Drinks", "Develop vocabulary and sentence structures related to food, drinks, vegetables and fruits. Practise exchanging information and expressing likes and dislikes.", "food"], ["Unit 1 – Food and Drink", "Food", "Develop vocabulary and sentence structures related to food, drinks, vegetables and fruits. Practise exchanging information and expressing likes and dislikes.", "food"], ["Unit 1 – Food and Drink", "Local food", "Develop vocabulary and sentence structures related to food, drinks, vegetables and fruits. Practise exchanging information and expressing likes and dislikes.", "localfood"], ["Unit 1 – Food and Drink", "Plants and flowers", "Develop vocabulary and sentence structures related to food, drinks, vegetables and fruits. Practise exchanging information and expressing likes and dislikes.", "localfood"], ["Unit 1 – Food and Drink", "Expressing likes and dislikes", "Develop vocabulary and sentence structures related to food, drinks, vegetables and fruits. Practise exchanging information and expressing likes and dislikes.", "food"], ["Unit 1 – Food and Drink", "Asking and answering questions about food", "Develop vocabulary and sentence structures related to food, drinks, vegetables and fruits. Practise exchanging information and expressing likes and dislikes.", "food"], ["Unit 2 – My Free Time", "Playing sports", "Develop vocabulary and question-and-answer sentences related to free-time activities.", "hobbies"], ["Unit 2 – My Free Time", "Singing", "Develop vocabulary and question-and-answer sentences related to free-time activities.", "hobbies"], ["Unit 2 – My Free Time", "Reading books", "Develop vocabulary and question-and-answer sentences related to free-time activities.", "hobbies"], ["Unit 2 – My Free Time", "Watching television", "Develop vocabulary and question-and-answer sentences related to free-time activities.", "hobbies"], ["Unit 2 – My Free Time", "Hobbies", "Develop vocabulary and question-and-answer sentences related to free-time activities.", "hobbies"], ["Unit 2 – My Free Time", "Free-time activities", "Develop vocabulary and question-and-answer sentences related to free-time activities.", "hobbies"], ["Unit 2 – My Free Time", "Asking and answering questions about hobbies", "Develop vocabulary and question-and-answer sentences related to free-time activities.", "hobbies"], ["Unit 3 – Weather and Season", "Weather vocabulary", "Learn vocabulary and related sentences to receive and communicate information about weather, seasons, festivals and celebrations.", "weather"], ["Unit 3 – Weather and Season", "Weather conditions", "Learn vocabulary and related sentences to receive and communicate information about weather, seasons, festivals and celebrations.", "weather"], ["Unit 3 – Weather and Season", "Seasons", "Learn vocabulary and related sentences to receive and communicate information about weather, seasons, festivals and celebrations.", "seasons"], ["Unit 3 – Weather and Season", "Weather forecasts", "Learn vocabulary and related sentences to receive and communicate information about weather, seasons, festivals and celebrations.", "weather"], ["Unit 3 – Weather and Season", "Hot and cold temperatures", "Learn vocabulary and related sentences to receive and communicate information about weather, seasons, festivals and celebrations.", "seasons"], ["Unit 3 – Weather and Season", "Festivals and celebrations", "Learn vocabulary and related sentences to receive and communicate information about weather, seasons, festivals and celebrations.", "festivals"], ["Unit 3 – Weather and Season", "Seasonal clothing", "Learn vocabulary and related sentences to receive and communicate information about weather, seasons, festivals and celebrations.", "seasons"], ["Unit 4 – Animals", "Land animals", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "landanimals"], ["Unit 4 – Animals", "Sea animals", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "seaanimals"], ["Unit 4 – Animals", "Farm animals", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "animals"], ["Unit 4 – Animals", "Wild animals", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "landanimals"], ["Unit 4 – Animals", "Animal vocabulary", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "animals"], ["Unit 4 – Animals", "Describing animals", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "animals"], ["Unit 4 – Animals", "Comparing animals", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "animals"], ["Unit 4 – Animals", "Asking and answering questions about animals", "Understand vocabulary, word groups and related sentences to communicate information about animals.", "animals"]]}, "P6": {"Communication English": [["Unit 1 – Good Health", "Talking about food", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "food"], ["Unit 1 – Good Health", "Talking about exercise", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "exercise"], ["Unit 1 – Good Health", "Cleanliness and personal hygiene", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "hygiene"], ["Unit 1 – Good Health", "Rest and sleep", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "sleep"], ["Unit 1 – Good Health", "Health check-ups", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "checkup"], ["Unit 1 – Good Health", "Talking about what someone has got", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "checkup"], ["Unit 1 – Good Health", "Describing how to make something", "Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.", "cooking"], ["Unit 2 – All Around the World", "Counting ordinal numbers", "Provide information about festivals, celebrations, special days and the lifestyles of native speakers.", "ordinal"], ["Unit 2 – All Around the World", "Talking about the calendar", "Provide information about festivals, celebrations, special days and the lifestyles of native speakers.", "calendar"], ["Unit 2 – All Around the World", "Dates, months and years", "Provide information about festivals, celebrations, special days and the lifestyles of native speakers.", "calendar"], ["Unit 2 – All Around the World", "Public holidays and festivals", "Provide information about festivals, celebrations, special days and the lifestyles of native speakers.", "holidays"], ["Unit 2 – All Around the World", "Birthdays and special occasions", "Provide information about festivals, celebrations, special days and the lifestyles of native speakers.", "celebrations"], ["Unit 2 – All Around the World", "Weather and weather forecasts", "Provide information about festivals, celebrations, special days and the lifestyles of native speakers.", "weather"], ["Unit 2 – All Around the World", "Seasons and climate", "Provide information about festivals, celebrations, special days and the lifestyles of native speakers.", "seasons"], ["Unit 2 – All Around the World", "Temperature and clothing", "Provide information about festivals, celebrations, special days and the lifestyles of native speakers.", "seasons"], ["Unit 2 – All Around the World", "Let’s Celebrate", "Provide information about festivals, celebrations, special days and the lifestyles of native speakers.", "festivals"], ["Unit 2 – All Around the World", "Countries and nationalities", "Provide information about festivals, celebrations, special days and the lifestyles of native speakers.", "countries"], ["Unit 2 – All Around the World", "Traditional clothing, food and drinks", "Provide information about festivals, celebrations, special days and the lifestyles of native speakers.", "culture"]], "General English": [["Unit 1 – Our Neighbors", "Countries", "Learn vocabulary and sentences for asking and answering about countries, nationalities, capital cities and cultures; apply English in everyday life.", "countries"], ["Unit 1 – Our Neighbors", "Nationalities", "Learn vocabulary and sentences for asking and answering about countries, nationalities, capital cities and cultures; apply English in everyday life.", "countries"], ["Unit 1 – Our Neighbors", "Capital cities", "Learn vocabulary and sentences for asking and answering about countries, nationalities, capital cities and cultures; apply English in everyday life.", "countries"], ["Unit 1 – Our Neighbors", "Languages", "Learn vocabulary and sentences for asking and answering about countries, nationalities, capital cities and cultures; apply English in everyday life.", "countries"], ["Unit 1 – Our Neighbors", "Cultures around the world", "Learn vocabulary and sentences for asking and answering about countries, nationalities, capital cities and cultures; apply English in everyday life.", "culture"], ["Unit 1 – Our Neighbors", "Asking about countries", "Learn vocabulary and sentences for asking and answering about countries, nationalities, capital cities and cultures; apply English in everyday life.", "countries"], ["Unit 1 – Our Neighbors", "Asking and answering about nationalities", "Learn vocabulary and sentences for asking and answering about countries, nationalities, capital cities and cultures; apply English in everyday life.", "countries"], ["Unit 1 – Our Neighbors", "Describing people and places", "Learn vocabulary and sentences for asking and answering about countries, nationalities, capital cities and cultures; apply English in everyday life.", "culture"], ["Unit 2 – Go Shopping", "Shopping vocabulary", "Learn vocabulary about vegetables and fruits and related sentence structures; practise conversations, exchanging information and expressing likes and dislikes.", "shopping"], ["Unit 2 – Go Shopping", "Fruits and vegetables", "Learn vocabulary about vegetables and fruits and related sentence structures; practise conversations, exchanging information and expressing likes and dislikes.", "produce"], ["Unit 2 – Go Shopping", "Food and drinks", "Learn vocabulary about vegetables and fruits and related sentence structures; practise conversations, exchanging information and expressing likes and dislikes.", "food"], ["Unit 2 – Go Shopping", "Prices and money", "Learn vocabulary about vegetables and fruits and related sentence structures; practise conversations, exchanging information and expressing likes and dislikes.", "shopping"], ["Unit 2 – Go Shopping", "Asking how much something costs", "Learn vocabulary about vegetables and fruits and related sentence structures; practise conversations, exchanging information and expressing likes and dislikes.", "market"], ["Unit 2 – Go Shopping", "Expressing likes and dislikes", "Learn vocabulary about vegetables and fruits and related sentence structures; practise conversations, exchanging information and expressing likes and dislikes.", "food"], ["Unit 2 – Go Shopping", "Buying and selling", "Learn vocabulary about vegetables and fruits and related sentence structures; practise conversations, exchanging information and expressing likes and dislikes.", "market"], ["Unit 2 – Go Shopping", "Conversations at the market", "Learn vocabulary about vegetables and fruits and related sentence structures; practise conversations, exchanging information and expressing likes and dislikes.", "market"]]}};
+// Additional Unit 3 / Unit 4 titles supplied by the teacher. Topic lists below are suggested lesson breakdowns.
+const EXTRA_UNITS={
+ "P5|Communication English|Unit 3 – On the Weekend": [
+  ["Talking about weekend activities","hobbies"],["What do you do at the weekend?","hobbies"],["Making weekend plans","hobbies"],["Inviting a friend","hobbies"],["Accepting and refusing invitations","hobbies"],["Days and times","calendar"],["Describing last weekend","hobbies"]
+ ],
+ "P6|Communication English|Unit 3 – All Year Long": [
+  ["Ordinal numbers and dates","ordinal"],["Days, months and years","calendar"],["Important dates","calendar"],["Public holidays","holidays"],["Festivals around the world","festivals"],["Birthdays and special occasions","celebrations"],["Making plans for special days","celebrations"]
+ ],
+ "P6|General English|Unit 3 – My Free Time": [
+  ["Hobbies and free-time activities","hobbies"],["Playing sports","hobbies"],["Music, singing and dancing","hobbies"],["Reading and watching television","hobbies"],["How often do you…?","hobbies"],["Making invitations and plans","hobbies"],["Describing favourite activities","hobbies"]
+ ],
+ "P6|General English|Unit 4 – Famous People": [
+  ["Famous people","famous"],["Jobs and occupations","famous"],["Describing appearance","famous"],["Describing personality","famous"],["Life stories and achievements","famous"],["When and where was he or she born?","famous"],["Asking and answering about famous people","famous"]
+ ]
+};
+for(const [key,topics] of Object.entries(EXTRA_UNITS)){
+ const [grade,part,unit]=key.split("|");
+ const outcome=unit.includes("Weekend")?"Talk about weekend activities, ask and answer questions, make invitations and describe plans.":unit.includes("All Year")?"Talk about dates, important days, festivals and special occasions throughout the year.":unit.includes("Famous")?"Use vocabulary and sentences to ask and answer questions and give information about well-known people, their lives and achievements.":"Talk about hobbies and free-time activities, ask about frequency and make plans with friends.";
+ topics.forEach(([title,theme])=>CURRICULUM[grade][part].push([unit,title,outcome,theme]));
+}
+const $=id=>document.getElementById(id);
+const gameNames=["Match the Meaning","Word Scramble","Sentence Scramble","Odd One Out","Memory Challenge","Describe and Guess","True or False","Quick-Fire Quiz","Category Challenge","Sentence Relay"];
+let lesson=null,cardIndex=0,meaningOn=true,missingIndex=0,choiceIndex=0,quizIndex=0,quizScore=0,quizAnswered=false,buildIndex=0,builtWords=[],gameIndex=0,pictureSelected=-1,pictureMatched=new Set();
+let customLessons=loadCustomLessons();
+
+const VOCAB={
+food:[["🍚","Rice","a food we eat with meals"],["🍗","Chicken","meat from a chicken"],["🥚","Egg","food from a chicken"],["🥛","Milk","a white drink"],["🍞","Bread","food made from flour"],["🐟","Fish","an animal from water that people eat"],["🍌","Banana","a long yellow fruit"]],
+exercise:[["🏃","Run","move quickly on your feet"],["🚶","Walk","move at a steady pace"],["⚽","Play football","kick a ball with your feet"],["🏊","Swim","move through water"],["🚴","Ride a bike","travel on a bicycle"],["💃","Dance","move your body to music"],["🧘","Stretch","move your body gently"]],
+hygiene:[["🧼","Soap","something we use to wash"],["🪥","Toothbrush","a tool for cleaning teeth"],["🦷","Teeth","we brush them every day"],["🚿","Shower","washing the body with water"],["🧴","Shampoo","something used to wash hair"],["👐","Wash hands","clean hands with soap and water"],["✂️","Nail clippers","a tool for cutting nails"]],
+sleep:[["🛏️","Bed","a place to sleep"],["🌙","Night","the dark part of the day"],["😴","Sleep","rest when you are tired"],["⏰","Alarm clock","a clock that wakes us up"],["📖","Read","look at and understand words"],["🤫","Quiet","making very little noise"],["🌅","Wake up","stop sleeping"]],
+checkup:[["👨‍⚕️","Doctor","a person who helps sick people"],["🏥","Hospital","a place where doctors work"],["🩺","Check-up","a visit to check your health"],["🤒","Fever","when your body is too hot"],["🤧","Cold","an illness that can make you sneeze"],["🤕","Headache","pain in your head"],["💊","Medicine","something used to treat illness"]],
+cooking:[["🥣","Bowl","a round dish for food"],["🥄","Spoon","a tool for eating or mixing"],["🔪","Knife","a tool for cutting"],["🍌","Banana","a long yellow fruit"],["🥛","Milk","a white drink"],["🥗","Mix","put things together"],["🍽️","Serve","give food to someone"]],
+ordinal:[["1️⃣","First","number one in order"],["2️⃣","Second","number two in order"],["3️⃣","Third","number three in order"],["4️⃣","Fourth","number four in order"],["5️⃣","Fifth","number five in order"],["🔟","Tenth","number ten in order"],["3️⃣1️⃣","Thirty-first","number thirty-one in order"]],
+days:[["📅","Monday","the day after Sunday"],["📅","Tuesday","the day after Monday"],["📅","Wednesday","the middle weekday"],["📅","Thursday","the day before Friday"],["📅","Friday","the last weekday for many schools"],["📅","Saturday","a day at the weekend"],["📅","Sunday","the day before Monday"]],
+calendar:[["🗓️","Calendar","a chart showing days and months"],["📅","Day","a period of 24 hours"],["1️⃣","Date","the number of a day in a month"],["📆","Week","seven days"],["🗓️","Month","one part of a year"],["📅","Year","twelve months"],["🎂","Birthday","the day someone was born"]],
+months:[["❄️","January","the first month of the year"],["💝","February","the second month of the year"],["🌸","March","the third month of the year"],["🌦️","April","the fourth month of the year"],["🌼","May","the fifth month of the year"],["☀️","June","the sixth month of the year"],["🎄","December","the twelfth and last month"]],
+holiday:[["🎄","Christmas Day","a holiday on 25 December"],["🎆","New Year's Day","the first day of January"],["💝","Valentine's Day","a special day on 14 February"],["💦","Songkran","the Thai New Year water festival"],["👩‍👧","Mother's Day","a day to honour mothers"],["👨‍👧","Father's Day","a day to honour fathers"],["🎉","Public holiday","a special day when many people do not work or go to school"]],
+festival:[["🎊","Festival","a special celebration"],["💦","Water festival","a celebration with water"],["🏮","Lantern","a light inside a cover"],["🎆","Fireworks","bright lights in the sky"],["🙏","Respect","being kind and polite"],["🎶","Music","sounds people enjoy"],["🍜","Traditional food","food connected to a culture"]],
+birthday:[["🎂","Birthday","the day you were born"],["🎁","Present","something given to another person"],["🎈","Balloon","a decoration filled with air"],["🎉","Party","a celebration with people"],["🕯️","Candle","a small light on a cake"],["💌","Card","a message for someone"],["📅","Date","the day of the month"]],
+weather:[["☀️","Sunny","bright with sunshine"],["🌧️","Rainy","with rain"],["☁️","Cloudy","with many clouds"],["💨","Windy","with lots of wind"],["⛈️","Stormy","with strong wind and rain"],["🥵","Hot","having a high temperature"],["🥶","Cold","having a low temperature"]],
+season:[["☀️","Summer","the hot season"],["🌧️","Rainy season","the season with lots of rain"],["❄️","Winter","the cold season"],["🌸","Spring","the season when many plants grow"],["🍂","Autumn","the season when leaves fall"],["🧥","Jacket","clothing for cool weather"],["☂️","Umbrella","something used for rain"]],
+clothes:[["👕","T-shirt","a light top"],["🧥","Jacket","clothing for cool weather"],["🩳","Shorts","short trousers"],["👗","Dress","one-piece clothing"],["👟","Trainers","shoes for walking or sport"],["☂️","Umbrella","something used in rain"],["🧢","Hat","something worn on the head"]],
+countries:[["🇹🇭","Thailand","a country in Southeast Asia"],["🇱🇦","Laos","a country next to Thailand"],["🇰🇭","Cambodia","a country next to Thailand"],["🇲🇾","Malaysia","a country in Southeast Asia"],["🇻🇳","Vietnam","a country in Southeast Asia"],["🇸🇬","Singapore","a country and city-state"],["🏙️","Capital city","the main city of a country"]],
+culture:[["👘","Traditional clothes","clothes connected to a culture"],["🍜","Traditional food","food connected to a culture"],["💃","Dance","movement to music"],["🎵","Traditional music","music from a culture"],["🏛️","Temple","a place for religious or cultural activities"],["🎎","Culture","the way people live and celebrate"],["🙏","Respect","being polite and thoughtful"]],
+produce:[["🍎","Apple","a round fruit"],["🍌","Banana","a long yellow fruit"],["🍊","Orange","a round orange fruit"],["🍉","Watermelon","a large fruit with lots of water"],["🥕","Carrot","an orange vegetable"],["🥦","Broccoli","a green vegetable"],["🥒","Cucumber","a long green vegetable"]],
+drinks:[["💧","Water","a clear drink our bodies need"],["🥛","Milk","a white drink"],["🧃","Juice","a drink made from fruit"],["🍵","Tea","a drink made with hot water"],["🥤","Smoothie","a thick drink made from blended fruit"],["🥥","Coconut water","the clear liquid inside a coconut"],["🧋","Milk tea","tea mixed with milk"]],
+local:[["🍚","Sticky rice","rice that sticks together"],["🍜","Noodles","long thin strips of dough"],["🥭","Mango","a sweet tropical fruit"],["🌶️","Chilli","a hot spicy food"],["🥥","Coconut","a large fruit with hard shell"],["🌿","Herbs","plants used to add flavour"],["🌸","Flower","the colourful part of a plant"]],
+famous:[["👩‍⚕️","Doctor","a person who helps sick people"],["⚽","Footballer","a person who plays football"],["🎤","Singer","a person who sings songs"],["🎬","Actor","a person who acts in films"],["📚","Writer","a person who writes books"],["🔬","Scientist","a person who studies science"],["🏅","Achievement","something important a person has done"]],
+healthy:[["🥦","Broccoli","a green vegetable"],["🥕","Carrot","an orange vegetable"],["🍊","Orange","a fruit with vitamin C"],["🍎","Apple","a crunchy fruit"],["🥛","Milk","a drink that helps build strong bones"],["🍬","Sweets","sugary food to eat sometimes"],["💧","Water","a drink our bodies need"]],
+hobbies:[["📚","Read books","look at and enjoy a book"],["🎤","Sing","make music with your voice"],["📺","Watch TV","look at television programmes"],["⚽","Play football","play a sport with a ball"],["🎨","Draw","make a picture"],["🎮","Play games","enjoy a game"],["🎵","Listen to music","hear songs and music"]],
+animals:[["🐘","Elephant","a very large land animal"],["🐶","Dog","a common pet"],["🐱","Cat","a small pet"],["🦁","Lion","a large wild cat"],["🐒","Monkey","an animal that can climb"],["🐬","Dolphin","a sea animal"],["🐄","Cow","a farm animal"]],
+land:[["🐘","Elephant","a very large land animal"],["🦒","Giraffe","a tall animal with a long neck"],["🦁","Lion","a large wild cat"],["🐒","Monkey","an animal that can climb"],["🐄","Cow","a farm animal"],["🐎","Horse","a large animal people can ride"],["🐰","Rabbit","a small animal with long ears"]],
+sea:[["🐬","Dolphin","a sea animal that breathes air"],["🦈","Shark","a large fish with sharp teeth"],["🐙","Octopus","a sea animal with eight arms"],["🐢","Sea turtle","a sea animal with a shell"],["🐳","Whale","a very large sea mammal"],["🦀","Crab","a sea animal with claws"],["🐠","Clownfish","a small colourful sea fish"]],
+animalfeatures:[["🐾","Fur","hair on an animal's body"],["🪶","Feathers","covering on a bird"],["🦷","Teeth","hard parts used for biting"],["🦵","Legs","body parts used for standing and moving"],["🪽","Wings","body parts used by birds to fly"],["🐚","Shell","a hard covering on some animals"],["👣","Paws","feet of some animals"]],
+shopping:[["💰","Price","how much something costs"],["💵","Money","what people use to pay"],["🛍️","Shopping bag","a bag for things we buy"],["🏷️","Cheap","not costing a lot"],["💳","Expensive","costing a lot of money"],["🧾","Receipt","paper showing what you paid"],["🪙","Change","money given back after paying"]],
+market:[["🏪","Market","a place to buy and sell things"],["🧑‍🌾","Seller","a person who sells things"],["🧑","Customer","a person who buys things"],["🧺","Basket","a container for shopping"],["⚖️","Kilo","one thousand grams"],["🙏","Please","a polite word when asking"],["😊","Thank you","words that show gratitude"]]
+};
+const SENTENCES={
+famous:["She is a famous singer.","He was born in Thailand.","She is kind and hardworking.","He is known for helping people.","What is this person famous for?"],
+food:["I like rice and chicken.","I eat fruit every day.","My favourite food is fish.","Do you like eggs? Yes, I do.","I drink milk in the morning."],
+exercise:["I exercise every day.","I like to play football.","Swimming is good exercise.","We should move our bodies every day.","What exercise do you do?"],
+hygiene:["I wash my hands before eating.","I brush my teeth twice a day.","I take a shower every day.","I use soap and water.","Clean hands help stop germs."],
+sleep:["I go to bed at nine o'clock.","I sleep at night.","I read a book before bed.","I wake up in the morning.","A good night's sleep helps me feel rested."],
+checkup:["I have got a headache.","She has got a fever.","I visit the doctor for a check-up.","The doctor checks my health.","How do you feel today?"],
+cooking:["First, wash the fruit.","Next, cut the banana.","Then, put it in a bowl.","Finally, serve the fruit salad.","How do we make a fruit salad?"],
+ordinal:["My birthday is on the first of June.","Today is the twenty-first of November.","The thirty-first comes after the thirtieth.","What is the date today?","My class is first in the line."],
+days:["Today is Monday.","Tomorrow is Tuesday.","Yesterday was Sunday.","What day is it today?","We go to school from Monday to Friday."],
+calendar:["Look at the calendar.","There are seven days in a week.","There are twelve months in a year.","What is the date today?","My birthday is in May."],
+months:["January is the first month.","December is the last month.","My birthday is in July.","There are twelve months in a year.","Which month comes after April?"],
+holiday:["Christmas Day is on the twenty-fifth of December.","New Year's Day is on the first of January.","Valentine's Day is on the fourteenth of February.","Songkran is a famous Thai festival.","What holiday do you celebrate?"],
+festival:["People celebrate festivals together.","Songkran is a water festival.","We enjoy music and food.","People wear special clothes.","What festival do you like?"],
+birthday:["My birthday is in May.","My birthday is on the tenth of June.","I give my friend a present.","We celebrate with our family.","Happy birthday!"],
+weather:["It is sunny today.","What is the weather like?","It is hot in Thailand.","Take an umbrella when it is rainy.","The sky is cloudy today."],
+season:["My favourite season is the rainy season.","It is cold in winter.","I take an umbrella when it rains.","Wear a jacket when it is cold.","Summer is usually hot."],
+clothes:["I wear a T-shirt when it is hot.","I wear a jacket when it is cold.","Take an umbrella when it rains.","What are you wearing today?","These are traditional clothes."],
+countries:["I am from Thailand.","I speak Thai and English.","Bangkok is the capital of Thailand.","Where are you from?","She is Thai. She is from Thailand."],
+culture:["People have different traditions.","Thai people wear traditional clothes on special days.","What traditional food do you like?","We should respect other cultures.","This is a traditional dance."],
+drinks:["I drink water every day.","Milk is a healthy drink.","I like orange juice.","Would you like some tea?","What is your favourite drink?"],
+local:["Sticky rice is popular in Thailand.","Mango is a sweet tropical fruit.","Chilli can taste hot and spicy.","Coconut water is a drink.","Plants need water and sunlight."],
+produce:["I like apples and bananas.","The carrots are orange.","I would like two apples, please.","I eat fruit and vegetables.","What fruit do you like?"],
+famous:[["👩‍⚕️","Doctor","a person who helps sick people"],["⚽","Footballer","a person who plays football"],["🎤","Singer","a person who sings songs"],["🎬","Actor","a person who acts in films"],["📚","Writer","a person who writes books"],["🔬","Scientist","a person who studies science"],["🏅","Achievement","something important a person has done"]],
+healthy:["Fruit and vegetables are good for us.","Carrots help keep our eyes healthy.","I should drink water every day.","Sweets are for sometimes, not every day.","A healthy meal has different foods."],
+hobbies:["I like reading books.","What do you do in your free time?","I enjoy singing.","My hobby is drawing.","Do you like playing football?"],
+animals:["An elephant is big.","A cheetah is fast.","A dolphin lives in the sea.","Which animal do you like?","A cow lives on a farm."],
+land:["An elephant is big.","A giraffe has a long neck.","A monkey can climb trees.","A cow lives on a farm.","Where does this animal live?"],
+sea:["A dolphin lives in the sea.","A whale is very big.","An octopus has eight arms.","A sea turtle has a shell.","Which sea animal do you like?"],
+animalfeatures:["A bird has feathers.","A turtle has a shell.","A monkey has two arms and two legs.","Some animals have fur.","Describe the animal."],
+shopping:["How much is this?","It is twenty baht.","This bag is cheap.","That toy is expensive.","Here is your change."],
+market:["Good morning. Can I help you?","I would like one kilo of oranges, please.","How much are they?","They are forty baht.","Thank you. Goodbye!"]
+};
+function chooseKey(title,theme){
+ const t=title.toLowerCase();
+ if(t.includes("ordinal"))return "ordinal";
+ if(t.includes("days of the week"))return "days";
+ if(t.includes("calendar"))return "calendar";
+ if(t.includes("dates, months")||t.includes("months and years"))return "months";
+ if(t.includes("public holidays"))return "holiday";
+ if(t.includes("festival")||t.includes("let’s celebrate")||t.includes("let's celebrate"))return "festival";
+ if(t.includes("birthday")||t.includes("special day"))return "birthday";
+ if(t.includes("weather"))return "weather";
+ if(t.includes("season")||t.includes("climate"))return "season";
+ if(t.includes("temperature")||t.includes("clothing")||t.includes("seasonal clothing"))return "clothes";
+ if(t.includes("countries")||t.includes("nationalit"))return "countries";
+ if(t.includes("traditional")||t.includes("culture"))return "culture";
+ if(t.includes("exercise")||t.includes("physical activity")||t.includes("sports"))return "exercise";
+ if(t.includes("cleanliness")||t.includes("hygiene"))return "hygiene";
+ if(t.includes("rest")||t.includes("sleep"))return "sleep";
+ if(t.includes("check-up")||t.includes("health check"))return "checkup";
+ if(t.includes("make something")||t.includes("how to make"))return "cooking";
+ if(t.includes("healthy and unhealthy")||t.includes("healthy eating"))return "healthy";
+ if(t.includes("vegetable")||t.includes("fruit"))return "produce";
+ if(t.includes("shopping")||t.includes("prices")||t.includes("money")||t.includes("costs"))return "shopping";
+ if(t.includes("market")||t.includes("buying and selling"))return "market";
+ if(t.includes("sea and land animals"))return "animals";
+ if(t.includes("sea animal"))return "sea";
+ if(t.includes("land animal"))return "land";
+ if(t.includes("animal characteristic")||t.includes("comparing animals")||t.includes("describing animals"))return "animalfeatures";
+ if(t.includes("animal"))return "animals";
+ if(t.includes("hobby")||t.includes("free-time")||t.includes("watching television")||t.includes("reading books")||t.includes("singing"))return "hobbies";
+ if(t==="drinks"||t.includes("drinks"))return "drinks";
+ if(t.includes("local food")||t.includes("plants and flowers"))return "local";
+ if(t.includes("food")||t.includes("drink")||t.includes("likes and dislikes"))return "food";
+ if(theme==="localfood")return "local";
+ if(theme==="produce")return "produce";
+ if(theme==="landanimals")return "land";
+ if(theme==="seaanimals")return "sea";
+ if(theme==="hobbies")return "hobbies";
+ if(theme==="countries")return "countries";
+ if(theme==="culture")return "culture";
+ if(theme==="weather")return "weather";
+ if(theme==="seasons")return "season";
+ if(theme==="ordinal")return "ordinal";
+ if(theme==="calendar")return "calendar";
+ if(theme==="holidays")return "holiday";
+ if(theme==="festivals"||theme==="celebrations")return "festival";
+ if(theme==="hygiene")return "hygiene";
+ if(theme==="sleep")return "sleep";
+ if(theme==="checkup")return "checkup";
+ if(theme==="cooking")return "cooking";
+ if(theme==="exercise")return "exercise";
+ if(theme==="famous")return "famous";
+ if(theme==="shopping")return "shopping";
+ if(theme==="market")return "market";
+ if(theme==="healthyfood")return "healthy";
+ return "food";
+}
+const OUTCOMES={
+"Communication English|P4|Unit 1 – Good Health":"Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.",
+"Communication English|P4|Unit 2 – All Year Long":"Provide information and understand the importance of festivals, celebrations and special days, including Christmas, New Year’s Day and Valentine’s Day.",
+"Communication English|P4|Unit 3 – All Around the World":"Provide information about festivals, celebrations, special days and the lifestyles and cultures of native speakers.",
+"Communication English|P5|Unit 1 – Healthy Food":"Develop English communication skills through vocabulary and sentence structures related to food, drinks and health. Students practise listening, speaking, exchanging information and expressing themselves in English.",
+"Communication English|P5|Unit 2 – Sea and Land Animals":"Develop English communication skills through familiar topics related to land and marine animals. Students learn vocabulary, descriptions and comparisons while developing confidence in conversations.",
+"Communication English|P6|Unit 1 – Good Health":"Engage in conversations using vocabulary, sentences and short texts to provide information about health, food and drinks.",
+"Communication English|P6|Unit 2 – All Around the World":"Provide information and understand the importance of festivals, celebrations, special days and the lifestyles of native speakers.",
+"General English|P4|Unit 1 – Healthy Living, Food and Drink":"Learn vocabulary and sentence structures related to vegetables and fruits. Students practise transferring information, exchanging information and expressing likes and dislikes.",
+"General English|P4|Unit 2 – My Free Time":"Develop vocabulary and question-and-answer sentences about free-time activities.",
+"General English|P4|Unit 3 – Weather and Season":"Learn vocabulary and related sentences to communicate information about weather, seasons, festivals and celebrations.",
+"General English|P4|Unit 4 – Animals":"Understand vocabulary, word groups and related sentences to communicate information about animals.",
+"General English|P5|Unit 1 – Food and Drink":"Develop vocabulary and sentence structures related to food, drinks, vegetables and fruits. Students practise exchanging information, expressing likes and dislikes and communicating appropriately.",
+"General English|P5|Unit 2 – My Free Time":"Develop vocabulary and question-and-answer sentences related to free-time activities.",
+"General English|P5|Unit 3 – Weather and Season":"Learn vocabulary and related sentences to receive and communicate information about weather, seasons, festivals and celebrations.",
+"General English|P5|Unit 4 – Animals":"Understand vocabulary, word groups and related sentences to communicate information about animals.",
+"General English|P6|Unit 1 – Our Neighbors":"Learn vocabulary and sentences for asking and answering questions about countries, nationalities, capital cities and cultures. Students develop their ability to apply English communication in everyday life.",
+"General English|P6|Unit 2 – Go Shopping":"Learn vocabulary about vegetables and fruits and related sentence structures. Students practise conversations, exchange information and express likes and dislikes."
+};
+function loadCustomLessons(){try{return JSON.parse(localStorage.getItem("thaiSmartBoardCustomLessons")||"[]")}catch(e){return []}}
+function saveCustomLessons(){try{localStorage.setItem("thaiSmartBoardCustomLessons",JSON.stringify(customLessons))}catch(e){$("customStatus").textContent="Could not save on this device. Check browser storage settings."}}
+function customVocabFromText(text,title){
+ const entries=text.split(/[;\n]+/).map(x=>x.trim()).filter(Boolean).slice(0,7);
+ if(entries.length){const parsed=entries.map((entry,i)=>{const bits=entry.split(/\s*:\s*/,2);return ["⭐",bits[0].trim(),(bits[1]||("A useful word about "+title.toLowerCase())).trim()]});
+  while(parsed.length<7)parsed.push(["⭐","Word "+(parsed.length+1),"A useful word about "+title.toLowerCase()]);return parsed;}
+ const key=chooseKey(title,"");return (VOCAB[key]||VOCAB.food).slice(0,7);
+}
+function customSentences(title,items){const topic=title.toLowerCase();const words=items.slice(0,4).map(x=>x[1].toLowerCase());return ["Today we are learning about "+topic+".","I can talk about "+topic+".","My favourite word is "+words[0]+".","I can use the word "+words[1]+" in a sentence.","What do you know about "+topic+"?"];}
+function addCustomLesson(){
+ const part=$("customPart").value,grade=$("customGrade").value,unit=$("customUnit").value.trim(),title=$("customTopic").value.trim();
+ if(!unit||!title){$("customStatus").textContent="Please enter both a unit name and a topic name.";return;}
+ const items=customVocabFromText($("customWords").value,title),sentences=customSentences(title,items),id="custom-"+Date.now()+"-"+Math.floor(Math.random()*10000);
+ const outcome="Students will learn key vocabulary and use simple English sentences to communicate about "+title.toLowerCase()+".";
+ customLessons.push({id,part,grade,unit,title,outcome,items,sentences});saveCustomLessons();populateCurriculumSelector();
+ const option=Array.from($("curriculumSelect").options).find(o=>o.value==="custom||"+id);if(option){$("curriculumSelect").value=option.value;loadFromCombinedSelector();}
+ $("customStatus").textContent="Added: "+unit+" — "+title+". It is now in your main lesson dropdown and saved on this device.";
+ $("customTopic").value="";$("customWords").value="";
+}
+function clearCustomForm(){$("customUnit").value="";$("customTopic").value="";$("customWords").value="";$ ("customStatus").textContent="Form cleared."}
+function deleteCustomLessons(){if(!customLessons.length){$("customStatus").textContent="There are no custom lessons to delete.";return;}if(!confirm("Delete all custom lessons saved on this device?"))return;customLessons=[];saveCustomLessons();populateCurriculumSelector();$("customStatus").textContent="Your custom lessons have been deleted from this device.";}
+function currentRows(){const p=$("part").value,g=$("grade").value;const base=(CURRICULUM[g][p]||[]).slice();customLessons.filter(x=>x.part===p&&x.grade===g).forEach(x=>{const row=[x.unit,x.title,x.outcome,"custom"];row.customData=x;base.push(row)});return base;}
+function groups(){const out=[];currentRows().forEach(r=>{let g=out.find(x=>x.name===r[0]);if(!g){g={name:r[0],rows:[]};out.push(g)}g.rows.push(r)});return out}
+function escapeText(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function refreshUnits(){
+ const gs=groups(),u=$("unit");u.innerHTML="";
+ gs.forEach(g=>{const o=document.createElement("option");o.value=g.name;o.textContent=g.name.replace(" – ",": ");u.appendChild(o)});
+ if(gs.length){u.selectedIndex=0;refreshTopics()}else{$("topic").innerHTML="";$("status").textContent="No units found for this selection."}
+}
+function refreshTopics(){
+ const rows=currentRows().filter(r=>r[0]===$("unit").value),t=$("topic");t.innerHTML="";
+ rows.forEach((r,i)=>{const o=document.createElement("option");o.value=String(i);o.textContent=r[1];t.appendChild(o)});
+ if(rows.length){t.selectedIndex=0;loadLesson()}else{$("status").textContent="No topics found in this unit."}
+}
+function sentenceSet(key,title,grade){
+ const base=SENTENCES[key]||SENTENCES.food;
+ const level=grade==="P6"?"P6":grade;
+ return base.slice(0,5);
+}
+function lessonObjective(title,key,grade){
+ const verbs=grade==="P6"?"use and exchange information confidently":grade==="P5"?"describe and ask and answer questions about":"name, recognise and talk about";
+ return `Students will ${verbs} ${title.toLowerCase()}, using the seven key words and complete English sentences.`;
+}
+const TOPIC_CONTENT={
+"Countries":{items:[["🇹🇭","Thailand","a country in Southeast Asia"],["🇯🇵","Japan","an island country in Asia"],["🇬🇧","the United Kingdom","a country in Europe"],["🇺🇸","the United States","a country in North America"],["🇦🇺","Australia","a country and continent"],["🇨🇳","China","a large country in Asia"],["🇫🇷","France","a country in Europe"]],sentences:["Thailand is in Southeast Asia.","Japan is an island country.","Australia is both a country and a continent.","Which country are you from?","I am from Thailand."]},
+"Nationalities":{items:[["🇹🇭","Thai","a person from Thailand"],["🇯🇵","Japanese","a person from Japan"],["🇬🇧","British","a person from the United Kingdom"],["🇺🇸","American","a person from the United States"],["🇦🇺","Australian","a person from Australia"],["🇨🇳","Chinese","a person from China"],["🇫🇷","French","a person from France"]],sentences:["I am Thai.","She is Japanese.","He is Australian.","What nationality are you?","They are from China. They are Chinese."]},
+"Capital cities":{items:[["🏙️","Bangkok","the capital city of Thailand"],["🗼","Tokyo","the capital city of Japan"],["🏛️","London","the capital city of the United Kingdom"],["🗽","Washington, D.C.","the capital city of the United States"],["🏙️","Canberra","the capital city of Australia"],["🏯","Beijing","the capital city of China"],["🗼","Paris","the capital city of France"]],sentences:["Bangkok is the capital of Thailand.","Tokyo is the capital of Japan.","Paris is the capital of France.","What is the capital of Australia?","Canberra is the capital of Australia."]},
+"Languages":{items:[["🗣️","Thai","the main language of Thailand"],["🗣️","Japanese","the main language of Japan"],["🗣️","English","a language spoken around the world"],["🗣️","Chinese","a language spoken in China"],["🗣️","French","a language spoken in France"],["🗣️","Korean","a language spoken in Korea"],["🗣️","Spanish","a language spoken in Spain and many other countries"]],sentences:["I speak Thai.","She speaks Japanese.","Many people speak English.","What language do you speak?","I speak Thai and a little English."]},
+"Cultures around the world":{items:[["🍜","Food","meals people eat"],["👘","Clothing","things people wear"],["🎉","Celebration","a special event"],["💃","Dance","moving to music"],["🎵","Music","sounds people enjoy"],["🙏","Custom","a traditional way of doing something"],["🏮","Festival","a special cultural event"]],sentences:["Different countries have different cultures.","People enjoy traditional food.","Traditional music is part of culture.","What festival do you celebrate?","We should respect other cultures."]},
+"Asking about countries":{items:[["❓","Where","a question word for a place"],["🌍","Country","a place with its own government"],["🧑","From","showing where someone comes from"],["🗣️","Come from","to have a home place or country"],["🇹🇭","Thailand","a country in Southeast Asia"],["💬","Which","asking someone to choose"],["🤝","Answer","to reply to a question"]],sentences:["Where are you from?","I am from Thailand.","Which country are you from?","I come from Japan.","Where does your friend come from?"]},
+"Asking and answering about nationalities":{items:[["❓","Nationality","the country identity of a person"],["🇹🇭","Thai","a person from Thailand"],["🇯🇵","Japanese","a person from Japan"],["🇬🇧","British","a person from the United Kingdom"],["🇺🇸","American","a person from the United States"],["💬","Are you...?","a question to check information"],["✅","Yes, I am.","a short positive answer"]],sentences:["What nationality are you?","I am Thai.","Is she Japanese? Yes, she is.","Are they American? No, they are British.","He is from Japan. He is Japanese."]},
+"Describing people and places":{items:[["😊","Friendly","kind and pleasant"],["🙂","Kind","caring about other people"],["🏙️","Busy","with many people or activities"],["🌳","Quiet","with little noise"],["🏞️","Beautiful","very nice to look at"],["🌆","Modern","new in style"],["🏛️","Historic","important in the past"]],sentences:["Bangkok is a busy city.","The park is quiet and beautiful.","My friend is kind and friendly.","Tokyo is a modern city.","Describe a place you like."]},
+"Shopping vocabulary":{items:[["🛒","Shop","a place where people buy things"],["🛍️","Shopping bag","a bag for things we buy"],["🏷️","Price","how much something costs"],["💵","Cash","money in notes and coins"],["💳","Card","a card used to pay"],["🧾","Receipt","paper showing what you bought"],["🪙","Change","money returned after paying"]],sentences:["I go to the shop.","Where is the price tag?","I will pay by cash.","Can I have a receipt, please?","Here is your change."]},
+"Prices and money":{items:[["💰","Price","how much something costs"],["฿","Baht","the money used in Thailand"],["🪙","Coin","a small round piece of money"],["💵","Banknote","a piece of paper money"],["➕","Total","the amount altogether"],["🪙","Change","money returned after paying"],["🏷️","Cheap","not costing much money"]],sentences:["How much is it?","It is twenty baht.","The total is one hundred baht.","Here is fifty baht.","How much change do I get?"]},
+"Asking how much something costs":{items:[["❓","How much...?","asking about a price"],["🏷️","Cost","the price of something"],["💵","Baht","Thai money"],["🙏","Please","a polite word when asking"],["💬","It is...","a way to say a price"],["🛍️","This one","the item near you"],["😊","Thank you","polite words to show gratitude"]],sentences:["How much is this?","How much are these oranges?","It is thirty baht.","They are fifty baht, please.","Thank you. Goodbye!"]},
+"Expressing likes and dislikes":{items:[["❤️","Like","to enjoy something"],["👎","Dislike","to not enjoy something"],["⭐","Favourite","the one you like best"],["😊","Enjoy","to like doing or having something"],["❓","Do you like...?","a question about preference"],["✅","Yes, I do.","a positive short answer"],["❌","No, I don't.","a negative short answer"]],sentences:["I like apples.","I don't like spicy food.","My favourite fruit is mango.","Do you like carrots? Yes, I do.","What food do you enjoy?"]},
+"Buying and selling":{items:[["🧑‍🌾","Seller","a person who sells things"],["🧑","Customer","a person who buys things"],["🛒","Buy","to get something by paying"],["🏷️","Sell","to give something for money"],["💵","Pay","to give money for something"],["🧺","Basket","a container for shopping"],["🙏","How many?","asking about a number"]],sentences:["The seller has fresh fruit.","I am a customer.","I would like to buy two mangoes.","How many would you like?","I will pay now, thank you."]},
+"Conversations at the market":{items:[["🏪","Market","a place to buy and sell things"],["🍌","Mango","a sweet tropical fruit"],["⚖️","One kilo","one thousand grams"],["❓","How much?","asking about a price"],["🧺","Basket","a container for shopping"],["🙏","Please","a polite word when asking"],["😊","Thank you","words that show gratitude"]],sentences:["Good morning. Can I help you?","I would like one kilo of mangoes, please.","How much are they?","They are forty baht.","Thank you. Goodbye!"]}
+};
+function makeLesson(row){
+ if(row.customData){return {unit:row[0],title:row[1],outcome:row.customData.outcome,key:chooseKey(row[1],""),items:row.customData.items,sentences:row.customData.sentences};}
+ const key=chooseKey(row[1],row[3]),specific=TOPIC_CONTENT[row[1]];
+ const items=(specific?specific.items:(VOCAB[key]||VOCAB.food)).slice(0,7);
+ const sentences=specific?specific.sentences:sentenceSet(key,row[1],$("grade").value);
+ return {unit:row[0],title:row[1],outcome:OUTCOMES[$("part").value+"|"+$("grade").value+"|"+row[0]]||row[2],key,items,sentences};
+}
+function loadLesson(){
+ const row=currentRows().filter(r=>r[0]===$("unit").value)[Number($("topic").value)];
+ if(!row)return;
+ lesson=makeLesson(row);renderLoadedLesson();
+}
+function renderLoadedLesson(){cardIndex=0;meaningOn=true;missingIndex=0;choiceIndex=0;quizIndex=0;quizScore=0;quizAnswered=false;buildIndex=0;
+ $("courseLine").textContent=($("part").value==="Communication English"?"PART 1: COMMUNICATION ENGLISH":"PART 2: GENERAL ENGLISH")+" • "+$("grade").options[$("grade").selectedIndex].text+" • Semester 2"+($("grade").value==="P4"&&$("part").value==="General English"?" • Course Code: EN14101":"");
+ $("lessonTitle").textContent=lesson.unit.replace(" – ",": ")+" — "+lesson.title;
+ $("outcome").innerHTML="<b>Unit Learning Outcome:</b> "+escapeText(lesson.outcome);
+ $("objective").textContent="Lesson objective: "+lessonObjective(lesson.title,lesson.key,$("grade").value);
+ $("vocabList").innerHTML=lesson.items.map((x,i)=>`<p><b>${i+1}. ${x[0]} ${escapeText(x[1])}</b> — ${escapeText(x[2])}</p>`).join("");
+ $("modelSentences").innerHTML=lesson.sentences.map((s,i)=>`<p>${i+1}. <b>${escapeText(s)}</b></p>`).join("");
+ $("teachingSteps").innerHTML=[
+ "Starter • 5 minutes: introduce the topic, ask what students already know and elicit familiar words.",
+ "Vocabulary • 8 minutes: teach the seven words with the flashcards. Say each word, students repeat, then check meaning.",
+ "Model language • 7 minutes: read the model sentences aloud. Students repeat and identify the key vocabulary.",
+ "Guided practice • 8 minutes: students build new sentences using the word bank and practise with a partner.",
+ "Communication • 7 minutes: pairs ask and answer the topic question. Change roles and invite pairs to perform.",
+ "Assessment • 5 minutes: check the quick questions and ask students to say one complete sentence independently."
+ ].map(x=>"<li>"+x+"</li>").join("");
+ const q=questionFor(lesson.key,lesson.title);
+ $("speaking").innerHTML=`<p><b>Ask your partner:</b> ${escapeText(q)}</p><p><b>Model answer:</b> ${escapeText(lesson.sentences[0])}</p><p><b>Pair task:</b> Ask, listen, answer in a full sentence, then change roles.</p>`;
+ $("listeningText").textContent=lesson.sentences.slice(0,3).join(" ");
+ $("assessment").innerHTML=`<ol><li>Say two words about ${escapeText(lesson.title.toLowerCase())}.</li><li>Explain the meaning of “${escapeText(lesson.items[0][1])}”.</li><li>Make a complete sentence using “${escapeText(lesson.items[1][1])}”.</li></ol>`;
+ $("status").textContent=`Loaded successfully • ${groups().length} units • ${currentRows().length} topics for ${$("grade").value} ${$("part").value}. Current lesson: ${lesson.unit.replace(" – ",": ")} → ${lesson.title}.`;
+ renderFlash();renderBuilder();renderMissing();renderChoice();startQuiz();renderWordBank();renderPictureMatch();renderWorksheet();renderGames();
+}
+function questionFor(key,title){
+ return ({food:"What food or drink do you like?",exercise:"What exercise do you do?",hygiene:"What do you do to keep clean?",sleep:"What time do you go to bed?",checkup:"How do you feel? What is wrong?",cooking:"How do we make a fruit salad?",ordinal:"What is the date today?",days:"What day is it today?",calendar:"What does a calendar show?",months:"Which month is your birthday?",holiday:"What holiday do you celebrate?",festival:"What festival do you like?",birthday:"When is your birthday?",weather:"What is the weather like today?",season:"What is your favourite season?",clothes:"What do you wear when it is hot or cold?",countries:"Where are you from? What language do you speak?",culture:"What traditional food or clothes do you know?",produce:"What fruit or vegetable do you like?",healthy:"Which foods are healthy choices?",hobbies:"What do you like doing in your free time?",animals:"What animal do you like? Why?",land:"Where does this land animal live?",sea:"Which sea animal can you describe?",animalfeatures:"How can you describe this animal?",shopping:"How much is it?",market:"What would you like to buy?"})[key]||"What can you tell us about "+title.toLowerCase()+"?";
+}
+function renderFlash(){const x=lesson.items[cardIndex];$("flashEmoji").textContent=x[0];$("flashWord").textContent=x[1];$("flashMeaning").textContent=meaningOn?x[2]:"";$("cardCount").textContent=(cardIndex+1)+" / 7"}
+function renderBuilder(){const s=lesson.sentences[buildIndex%lesson.sentences.length];$("targetSentence").textContent=s;builtWords=[];const words=s.replace(/[.!?]/g,"").split(" ");const shuffled=words.slice().sort(()=>Math.random()-.5);$("wordBank").innerHTML=shuffled.map((w,i)=>`<button type="button" onclick="addBuildWord(${i},'${escapeText(w).replace(/'/g,"\\'")}')">${escapeText(w)}</button>`).join("");$("builtSentence").textContent="";$("buildFeedback").textContent="";window._buildTarget=words.join(" ").toLowerCase()}
+window.addBuildWord=(i,w)=>{builtWords.push(w);$("builtSentence").textContent=builtWords.join(" ")};
+function renderMissing(){const s=lesson.sentences[missingIndex%lesson.sentences.length],word=lesson.items[missingIndex%7][1];const tokens=s.split(" ");let replaced=false;const q=tokens.map(t=>{if(!replaced&&t.toLowerCase().replace(/[.,!?]/g,"")===word.toLowerCase()){replaced=true;return "________"}return t});if(!replaced){q[0]="________";}const correct=replaced?word:tokens[0].replace(/[.,!?]/g,"");$("missingQ").textContent=q.join(" ");const opts=shuffle([correct,lesson.items[(missingIndex+2)%7][1],lesson.items[(missingIndex+4)%7][1]]);$("missingChoices").innerHTML=opts.map(o=>`<button class="secondary" onclick="markAnswer('missing','${escapeText(o)}','${escapeText(correct)}')">${escapeText(o)}</button>`).join("");$("missingFeedback").textContent=""}
+function renderChoice(){const item=lesson.items[choiceIndex%7],opts=shuffle([item[1],lesson.items[(choiceIndex+2)%7][1],lesson.items[(choiceIndex+4)%7][1]]);$("choiceQ").textContent="Which word matches this meaning: "+item[2]+"?";$("choiceOptions").innerHTML=opts.map((o,i)=>`<button class="secondary" style="display:block;width:100%;text-align:left;margin:7px 0" onclick="markAnswer('choice','${escapeText(o)}','${escapeText(item[1])}')">${"ABC"[i]}. ${escapeText(o)}</button>`).join("");$("choiceFeedback").textContent=""}
+window.markAnswer=(id,chosen,answer)=>{$(id+"Feedback").textContent=chosen===answer?"Correct! Well done.":"Not quite. Try again.";$(id+"Feedback").style.color=chosen===answer?"#15803d":"#b45309"};
+function shuffle(a){return a.slice().sort(()=>Math.random()-.5)}
+function startQuiz(){quizIndex=0;quizScore=0;quizAnswered=false;showQuiz()}
+function showQuiz(){const item=lesson.items[quizIndex%7];$("quizCount").textContent="Question "+(quizIndex+1)+" of 5";$("quizBar").style.width=(quizIndex/5*100)+"%";$("quizQ").textContent="What does "+item[1]+" mean?";const opts=shuffle([item[2],lesson.items[(quizIndex+2)%7][2],lesson.items[(quizIndex+4)%7][2]]);$("quizOptions").innerHTML=opts.map(o=>`<button class="secondary" style="display:block;width:100%;margin:7px 0;text-align:left" onclick="quizAnswer('${escapeText(o)}','${escapeText(item[2])}',this)">${escapeText(o)}</button>`).join("");$("quizFeedback").textContent="";$("quizScore").textContent="Score: "+quizScore}
+window.quizAnswer=(a,b,btn)=>{if(quizAnswered)return;quizAnswered=true;if(a===b)quizScore++;$("quizFeedback").textContent=a===b?"Correct!":"Correct answer: "+b;Array.from($("quizOptions").children).forEach(x=>x.disabled=true);$("quizScore").textContent="Score: "+quizScore};
+function renderWordBank(){
+ const grid=$("wordBankGrid"); if(!grid)return;
+ const words=shuffle(lesson.items.slice());
+ grid.innerHTML=words.map((x,i)=>`<button class="banktile" type="button" onclick="showBankMeaning(${lesson.items.indexOf(x)})"><span style="font-size:28px">${escapeText(x[0])}</span><strong>${escapeText(x[1])}</strong><span class="small">Tap for meaning</span></button>`).join("");
+ $("wordBankMeaning").textContent="Choose a word to see its meaning.";
+}
+window.showBankMeaning=(i)=>{const x=lesson.items[i];$("wordBankMeaning").innerHTML=`<span style="font-size:30px">${escapeText(x[0])}</span> <b>${escapeText(x[1])}</b><br>${escapeText(x[2])}<br><span class="small">Now say: “${escapeText(lesson.sentences[i%lesson.sentences.length])}”</span>`;};
+function renderPictureMatch(){
+ pictureSelected=-1;pictureMatched=new Set();
+ $("pictureGrid").innerHTML=lesson.items.map((x,i)=>`<button type="button" class="picturetile" id="picture-${i}" onclick="selectPicture(${i})"><span class="pic">${escapeText(x[0])}</span><b>Picture ${i+1}</b><br><span class="small" id="pictureLabel-${i}">Choose its word</span></button>`).join("");
+ $("matchWords").innerHTML=shuffle(lesson.items.map((x,i)=>({word:x[1],index:i}))).map(x=>`<button type="button" id="matchword-${x.index}" onclick="matchPictureWord(${x.index})">${escapeText(x.word)}</button>`).join("");
+ $("matchFeedback").textContent="Choose a picture, then choose its matching word.";
+}
+window.selectPicture=(i)=>{if(pictureMatched.has(i))return;pictureSelected=i;document.querySelectorAll(".picturetile").forEach(x=>x.classList.remove("selected"));$("picture-"+i).classList.add("selected");$("matchFeedback").textContent="Now choose the word for picture "+(i+1)+".";};
+window.matchPictureWord=(i)=>{
+ if(pictureSelected<0){$("matchFeedback").textContent="First choose a picture.";return;}
+ if(pictureMatched.has(i)){return;}
+ if(i===pictureSelected){pictureMatched.add(i);$("pictureLabel-"+i).textContent=lesson.items[i][1];$("picture-"+i).classList.remove("selected");$("picture-"+i).style.borderColor="#16a34a";$("matchword-"+i).disabled=true;$("matchFeedback").textContent=pictureMatched.size===7?"Excellent! You matched all 7 pictures correctly!":"Correct! "+pictureMatched.size+" of 7 matched. Choose the next picture.";pictureSelected=-1;}
+ else{$("matchFeedback").textContent="Not quite. Try another word.";}
+};
+function renderWorksheet(){$("worksheetContent").innerHTML=`<h3>${escapeText(lesson.unit.replace(" – ",": "))}: ${escapeText(lesson.title)}</h3><p>Name: __________________________ Date: ______________</p><b>Word bank:</b><p>${lesson.items.map(x=>escapeText(x[1])).join(" • ")}</p><b>A. Match each picture to a word from the word bank.</b>${lesson.items.map((x,i)=>`<p>${i+1}. <span style="font-size:24px">${escapeText(x[0])}</span> __________________________</p>`).join("")}<b>B. Write the meanings.</b>${lesson.items.slice(0,4).map((x,i)=>`<p>${i+1}. ${escapeText(x[1])} — ______________________________</p>`).join("")}<b>C. Complete the sentences.</b>${lesson.sentences.slice(0,3).map((s,i)=>`<p>${i+1}. ${escapeText(s.replace(/[A-Za-z]+/,"___________"))}</p>`).join("")}<b>D. Write two sentences about ${escapeText(lesson.title.toLowerCase())}.</b><p>1. ________________________________________</p><p>2. ________________________________________</p>`}
+function renderGames(){$("gameGrid").innerHTML=gameNames.map((g,i)=>`<button onclick="playGame(${i})"><b>${i+1}. ${g}</b><br><span class="small">Start game</span></button>`).join("");$("gameArea").classList.add("hidden")}
+window.playGame=(n)=>{
+ const area=$("gameArea");area.classList.remove("hidden");const x=lesson.items[Math.floor(Math.random()*7)],other=lesson.items[(lesson.items.indexOf(x)+2)%7];
+ let title=gameNames[n],body="",answer="";
+ if(n===0){body=`Match the word <b>${escapeText(x[1])}</b> to its meaning.`;answer=x[2]}
+ if(n===1){body=`Unscramble this word: <b>${escapeText(x[1].replace(/ /g,"").split("").sort(()=>Math.random()-.5).join(" "))}</b>`;answer=x[1]}
+ if(n===2){const s=lesson.sentences[Math.floor(Math.random()*lesson.sentences.length)];body=`Put this sentence in the correct order: <b>${escapeText(s.split(" ").sort(()=>Math.random()-.5).join(" / "))}</b>`;answer=s}
+ if(n===3){body=`Which word does NOT belong with the other words? <b>${lesson.items.slice(0,3).map(v=>escapeText(v[1])).join(", ")}, ${escapeText(lesson.items[6][1])}</b>. Explain your choice.`;answer="Teacher/class discussion"}
+ if(n===4){body=`Look at these words for ten seconds: <b>${lesson.items.slice(0,5).map(v=>escapeText(v[1])).join(", ")}</b>. Hide the screen and remember as many as possible.`;answer="Remembered words"}
+ if(n===5){body=`Listen to the clue: <b>${escapeText(x[2])}</b>. Guess the word.`;answer=x[1]}
+ if(n===6){body=`True or false: <b>${escapeText(x[1])}</b> means “${escapeText(x[2])}”.`;answer="True"}
+ if(n===7){body=`Quick! What is the meaning of <b>${escapeText(x[1])}</b>?`;answer=x[2]}
+ if(n===8){body=`Put <b>${escapeText(x[1])}</b> into a group. What other words from this lesson belong in the same group?`;answer="Answers may vary"}
+ if(n===9){body=`Make a sentence using <b>${escapeText(x[1])}</b>. Try to use a complete sentence.`;answer="Answers may vary"}
+ area.innerHTML=`<h3>${n+1}. ${title}</h3><p style="font-size:19px;line-height:1.5">${body}</p><div class="actions"><button class="secondary" onclick="speakText('${escapeText(x[1]).replace(/'/g,"\\'")}')">🔊 Hear word</button><button onclick="showGameAnswer('${escapeText(answer).replace(/'/g,"\\'")}')">Show answer / teacher check</button><button class="light" onclick="playGame(${n})">New challenge</button></div><p class="feedback" id="gameAnswer"></p>`;
+};
+window.showGameAnswer=a=>{$("gameAnswer").textContent="Suggested answer: "+a};
+window.speakText=t=>{if(window.speechSynthesis){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.85;speechSynthesis.speak(u)}};
+$("curriculumSelect").addEventListener("change",loadFromCombinedSelector);
+$("addCustomLesson").addEventListener("click",addCustomLesson);
+$("clearCustomForm").addEventListener("click",clearCustomForm);
+$("deleteCustomLessons").addEventListener("click",deleteCustomLessons);
+$("part").addEventListener("change",refreshUnits);
+$("grade").addEventListener("change",refreshUnits);
+$("unit").addEventListener("change",refreshTopics);
+function refreshTopics(){const rows=currentRows().filter(r=>r[0]===$("unit").value),t=$("topic");t.innerHTML="";rows.forEach((r,i)=>{const o=document.createElement("option");o.value=String(i);o.textContent=r[1];t.appendChild(o)});if(rows.length){t.selectedIndex=0;loadLesson()}else{$("status").textContent="No topics found in the selected unit."}}
+$("topic").addEventListener("change",loadLesson);
+$("prev").onclick=()=>{cardIndex=(cardIndex+6)%7;renderFlash()};$("next").onclick=()=>{cardIndex=(cardIndex+1)%7;renderFlash()};
+$("meaningToggle").onclick=()=>{meaningOn=!meaningOn;renderFlash()};
+$("speakWord").onclick=()=>speakText(lesson.items[cardIndex][1]);
+$("listenLesson").onclick=()=>speakText($("listeningText").textContent);
+$("checkBuild").onclick=()=>{$("buildFeedback").textContent=builtWords.join(" ").toLowerCase()===window._buildTarget?"Correct sentence!":"Try again. Check the word order.";};
+$("resetBuild").onclick=()=>{builtWords=[];$("builtSentence").textContent="";$("buildFeedback").textContent=""};
+$("newBuild").onclick=()=>{buildIndex++;renderBuilder()};
+$("missingNext").onclick=()=>{missingIndex++;renderMissing()};
+$("choiceNext").onclick=()=>{choiceIndex++;renderChoice()};
+$("quizNext").onclick=()=>{if(quizIndex<4){quizIndex++;quizAnswered=false;showQuiz()}else{$("quizQ").textContent="Quiz finished! Final score: "+quizScore+" / 5";$("quizOptions").innerHTML="";$("quizBar").style.width="100%";$("quizCount").textContent="Finished"}};
+$("quizRestart").onclick=startQuiz;$("refreshWorksheet").onclick=renderWorksheet;
+$("speakWordBank").onclick=()=>speakText(lesson.items.map(x=>x[1]).join(", "));
+$("shuffleWordBank").onclick=renderWordBank;
+$("resetPictureMatch").onclick=renderPictureMatch;
+document.querySelectorAll("#tabs button").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("#tabs button").forEach(x=>x.classList.toggle("active",x===b));["flash","builder","missing","choice","quiz","wordbank","picturematch","worksheet","games"].forEach(id=>$(id).classList.toggle("hidden",id!==b.dataset.tab))}));
+function populateCurriculumSelector(){
+ const sel=$("curriculumSelect"); sel.innerHTML="";
+ const partOrder=["Communication English","General English"];
+ const gradeOrder=["P4","P5","P6"];
+ let count=0;
+ partOrder.forEach(part=>gradeOrder.forEach(grade=>{
+  const rows=CURRICULUM[grade][part]||[];
+  const unitNames=[...new Set(rows.map(r=>r[0]))];
+  unitNames.forEach(unit=>{
+   const group=document.createElement("optgroup");
+   const partLabel=part==="Communication English"?"PART 1: COMMUNICATION ENGLISH":"PART 2: GENERAL ENGLISH";
+   group.label=`${partLabel} • ${grade} • ${unit.replace(" – ",": ")}`;
+   rows.forEach((r,index)=>{if(r[0]===unit){const opt=document.createElement("option");opt.value=[part,grade,unit,index].join("||");opt.textContent=r[1];group.appendChild(opt);count++;}});
+   sel.appendChild(group);
+   });
+  customLessons.filter(x=>x.part===part&&x.grade===grade).forEach(x=>{const group=document.createElement("optgroup");group.label="MY CUSTOM LESSONS • "+grade+" • "+x.unit;const opt=document.createElement("option");opt.value="custom||"+x.id;opt.textContent=x.title;group.appendChild(opt);sel.appendChild(group);});
+ }));
+ if(sel.options.length){sel.selectedIndex=0;loadFromCombinedSelector();}
+ return count;
+}
+function loadFromCombinedSelector(){
+ const value=$("curriculumSelect").value; if(!value)return;
+ if(value.startsWith("custom||")){const item=customLessons.find(x=>x.id===value.split("||")[1]);if(!item)return;$("part").value=item.part;$("grade").value=item.grade;const row=[item.unit,item.title,item.outcome,"custom"];row.customData=item;lesson=makeLesson(row);renderLoadedLesson();return;}
+ const [part,grade,unit,indexText]=value.split("||");
+ $("part").value=part; $("grade").value=grade;
+ refreshUnits(); $("unit").value=unit;
+ refreshTopics();
+ const rows=currentRows().filter(r=>r[0]===unit);
+ const globalRow=CURRICULUM[grade][part][Number(indexText)];
+ const topicIndex=rows.findIndex(r=>r===globalRow || (r[1]===globalRow?.[1] && r[0]===unit));
+ $("topic").selectedIndex=Math.max(0,topicIndex);
+ loadLesson();
+}
+function initialise(){
+ try{
+  const total=populateCurriculumSelector();
+  const unitTotal=Object.values(CURRICULUM).reduce((n,g)=>n+Object.values(g).reduce((m,rows)=>m+new Set(rows.map(r=>r[0])).size,0),0);
+  $("status").textContent=`Curriculum ready • ${total} topic lessons across ${unitTotal} units • both subjects • P4, P5 and P6.`;
+ }catch(e){$("status").textContent="Loading error: "+e.message;console.error(e)}
+}
+initialise();
+
+// ===== SmartBoard teacher-control layer (additive; preserves the original curriculum) =====
+let smartProgress={};let smartCurrentActivity=0;let smartRoleIndex=0;let smartRoleDone=false;let smartWritingDone=false;
+const smartActivities=[['Vocabulary','flash'],['Sentence Builder','builder'],['Missing Words','missing'],['Multiple Choice','choice'],['Quick Quiz','quiz'],['Word Bank','wordbank'],['Picture Match','picturematch'],['Worksheet','worksheet'],['Mini-Games','games'],['Speaking','communicationPractice'],['Writing','writingWorkshop']];
+function smartKey(){return [document.getElementById('part').value,document.getElementById('grade').value,lesson?.unit,lesson?.title].join('|')}
+function smartProgressKey(){return 'sb-progress-'+smartKey()}
+function smartLoadProgress(){try{smartProgress=JSON.parse(localStorage.getItem(smartProgressKey())||'{}')}catch(e){smartProgress={}};smartProgress.speaking=!!smartProgress.speaking;smartProgress.writing=!!smartProgress.writing;smartUpdateProgress()}
+function smartMarkDone(k){smartProgress[k]=true;try{localStorage.setItem(smartProgressKey(),JSON.stringify(smartProgress))}catch(e){}smartUpdateProgress()}
+function smartUpdateProgress(){const el=document.getElementById('progressChips');if(!el)return;el.innerHTML=smartActivities.map(([name,id],i)=>{let done=smartProgress[id]||(id==='communicationPractice'&&smartProgress.speaking)||(id==='writingWorkshop'&&smartProgress.writing);return `<span class="progress-chip ${done?'done':''}">${done?'✓':'○'} ${name}</span>`}).join('');let n=smartActivities.filter(([name,id])=>smartProgress[id]||(id==='communicationPractice'&&smartProgress.speaking)||(id==='writingWorkshop'&&smartProgress.writing)).length;document.getElementById('progressText').textContent=n+' of '+smartActivities.length+' complete';document.getElementById('lessonProgress').style.width=(n/smartActivities.length*100)+'%'}
+function smartBanner(){if(!lesson)return;document.getElementById('nowTeaching').textContent='📚 NOW TEACHING • '+document.getElementById('grade').value+' • '+document.getElementById('part').value+' • '+lesson.unit.replace(' – ',': ')+' • '+lesson.title}
+function smartDifficulty(){return document.getElementById('difficulty')?.value||'easy'}
+function smartRenderRoleplay(){if(!lesson)return;let level=smartDifficulty(),items=lesson.items;let prompts=level==='easy'?['Greet your partner.','Ask for one item or piece of information.','Answer using a complete sentence.','Say thank you and goodbye.']:level==='hard'?['Start the conversation.','Ask two questions using this topic vocabulary.','Give a useful answer and one extra detail.','Finish the conversation politely.']:['Create a conversation without reading a model.','Use at least five topic words.','Ask a follow-up question and explain your choice.','Perform naturally with a partner.'];let title=lesson.title.toLowerCase();let lines=level==='easy'?[`A: Hello! Can you tell me about ${title}?`,`B: Yes. I can tell you about ${items[0][1].toLowerCase()}.`,`A: What does ${items[1][1].toLowerCase()} mean?`,`B: ${items[1][2]}.`]:level==='hard'?[`A: What can you tell me about ${title}?`,`B: I think ${items[0][1].toLowerCase()} is important because ${items[0][2]}.`,`A: Can you give me another example?`,`B: Yes. ${items[1][1]} is also useful.`,`A: Thank you for explaining.`]:['Student A: Lead a conversation about '+title+'.','Student B: Ask questions, give reasons and add examples.','Both students: Use at least five words from the vocabulary list.'];document.getElementById('roleplayContent').innerHTML=`<div class="role-card"><h3>🎭 Role-play ${smartRoleIndex+1}: ${escapeText(lesson.title)}</h3><div class="grid"><div><b>STUDENT A</b><p>${escapeText(prompts[0])}</p><p>${escapeText(prompts[1])}</p></div><div><b>STUDENT B</b><p>${escapeText(prompts[2])}</p><p>${escapeText(prompts[3])}</p></div></div><div class="model-dialogue"><b>${level==='easy'?'Model dialogue':level==='hard'?'Dialogue challenge':'Independent speaking challenge'}</b>${lines.map(x=>'<p>'+escapeText(x)+'</p>').join('')}</div><p><b>Useful words:</b> ${items.slice(0,level==='easy'?3:level==='hard'?5:7).map(x=>escapeText(x[1])).join(' • ')}</p></div>`}
+function smartRenderWriting(){if(!lesson)return;let g=document.getElementById('grade').value,level=smartDifficulty(),words=lesson.items.slice(0,level==='easy'?3:level==='hard'?5:7).map(x=>x[1].toLowerCase());let frames=g==='P4'?['I like ___.','I can see ___.','It is ___.']:['I think ___ is important.','For example, ___.','I also ___.','I like ___ because ___.'];let model=`${lesson.title} is an interesting topic. I can talk about ${words[0]}. ${words[1]} is also important. I use the word ${words[2]||words[0]} in a sentence. I think learning about this topic is useful.`;let task=level==='easy'?`Complete 3–5 sentences using these frames: ${frames.join('  ')}`:level==='hard'?'Write a connected paragraph of 5 sentences about '+lesson.title+'. Use at least five vocabulary words and connect your ideas with and, but, because or also.':'Write an independent paragraph of 7–10 sentences about '+lesson.title+'. Explain your ideas, give examples and say why the topic is important. Use at least seven vocabulary words.';document.getElementById('writingContent').innerHTML=`<div class="role-card"><b>Writing challenge • ${g} • ${level.toUpperCase()}</b><p class="large-display">${escapeText(task)}</p><p><b>Vocabulary bank:</b> ${words.map(escapeText).join(' • ')}</p><p><b>Sentence starters:</b> I think… • For example… • Also… • Because… • In my opinion…</p><div class="writing-model"><b>Model paragraph</b><p>${escapeText(model)}</p></div><p><b>Teacher correction check:</b> Capital letters ✓ Full stops ✓ Correct spelling ✓ Complete sentences ✓ Topic vocabulary ✓</p></div>`}
+function smartRenderExtras(){smartRenderRoleplay();smartRenderWriting();smartBanner();smartLoadProgress();let comm=document.getElementById('part').value==='Communication English';document.getElementById('communicationPractice').classList.toggle('hidden',!comm);document.getElementById('writingWorkshop').classList.toggle('hidden',comm)}
+function smartShowChallenge(){if(!lesson)return;let level=smartDifficulty(),item=lesson.items[Math.floor(Math.random()*lesson.items.length)],sentence=lesson.sentences[Math.floor(Math.random()*lesson.sentences.length)];let challenge=level==='easy'?`Say the word: ${item[1]} — then repeat it clearly.`:level==='hard'?`Explain “${item[1]}” in your own words, then use it in a sentence.`:`Use “${item[1]}” in a detailed sentence and explain how it connects to this topic: ${lesson.title}.`;let out=document.getElementById('teacherOutput');out.classList.remove('hidden');out.innerHTML=`🎲 RANDOM STUDENT CHALLENGE<br><span>${escapeText(challenge)}</span><p style="font-size:.65em;font-weight:500">Optional model: ${escapeText(sentence)}</p>`}
+function smartOpenActivity(i){smartCurrentActivity=(i+1)%smartActivities.length;let [name,id]=smartActivities[smartCurrentActivity];if(id==='communicationPractice'||id==='writingWorkshop'){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});return}document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));['flash','builder','missing','choice','quiz','wordbank','picturematch','worksheet','games'].forEach(x=>document.getElementById(x)?.classList.toggle('hidden',x!==id));document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'})}
+// Enforce one attempt for each generated answer question, with clear green/red feedback.
+const smartOriginalMarkAnswer=window.markAnswer;
+window.markAnswer=(id,chosen,answer)=>{let feedback=document.getElementById(id+'Feedback');if(feedback.dataset.locked==='1')return;let correct=String(chosen)===String(answer);feedback.dataset.locked='1';feedback.textContent=correct?'✓ Correct!':'✗ Not quite. Correct answer: '+answer;feedback.style.color=correct?'#15803d':'#b91c1c';let box=id==='missing'?'missingChoices':'choiceOptions';document.querySelectorAll('#'+box+' button').forEach(b=>{b.disabled=true;if(b.textContent.trim().endsWith(String(answer)))b.classList.add('answer-correct');else if(b.textContent.includes(String(chosen)))b.classList.add('answer-wrong')});smartMarkDone(id)};
+const smartOriginalQuizAnswer=window.quizAnswer;
+window.quizAnswer=(a,b,btn)=>{if(quizAnswered)return;smartOriginalQuizAnswer(a,b,btn);document.querySelectorAll('#quizOptions button').forEach(x=>{x.disabled=true;if(x.textContent.trim()===String(b))x.classList.add('answer-correct');else if(x===btn)x.classList.add('answer-wrong')});let f=document.getElementById('quizFeedback');f.textContent=String(a)===String(b)?'✓ Correct!':'✗ Incorrect. Correct answer: '+b;f.style.color=String(a)===String(b)?'#15803d':'#b91c1c';if(quizIndex===4)smartMarkDone('quiz')};
+const smartOriginalRenderLoaded=renderLoadedLesson;
+renderLoadedLesson=function(){smartOriginalRenderLoaded();smartRenderExtras();smartCurrentActivity=0};
+document.getElementById('difficulty').addEventListener('change',()=>{quizAnswered=false;smartRenderRoleplay();smartRenderWriting();renderBuilder();renderMissing();renderChoice();showQuiz();if(typeof renderWordBank==='function')renderWordBank();if(typeof renderPictureMatch==='function')renderPictureMatch();let d=smartDifficulty();meaningOn=d!=='easy';renderFlash();document.getElementById('flashMeaning').textContent=d==='harder'?lesson.sentences[cardIndex%lesson.sentences.length]:d==='hard'?lesson.items[cardIndex][2]:'';});
+document.getElementById('randomChallenge').addEventListener('click',smartShowChallenge);
+document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>{let i=smartActivities.findIndex(x=>x[1]===b.dataset.tab);if(i>=0)smartCurrentActivity=i;}));
+document.getElementById('nextActivity').addEventListener('click',()=>smartOpenActivity(smartCurrentActivity));
+document.getElementById('presentationToggle').addEventListener('click',()=>{document.body.classList.toggle('presentation-mode');let on=document.body.classList.contains('presentation-mode');document.getElementById('presentationToggle').textContent=on?'🧑‍🏫 Teacher controls':'📺 Presentation mode'});
+document.getElementById('newRoleplay').addEventListener('click',()=>{smartRoleIndex++;smartRenderRoleplay()});
+document.getElementById('roleplayComplete').addEventListener('click',()=>smartMarkDone('communicationPractice'));
+document.getElementById('writingComplete').addEventListener('click',()=>smartMarkDone('writingWorkshop'));
+// Mark completed practice when teacher advances through the core sequence.
+document.getElementById('next').addEventListener('click',()=>{if(cardIndex===6)smartMarkDone('flash')});
+document.getElementById('newBuild').addEventListener('click',()=>smartMarkDone('builder'));
+document.getElementById('missingNext').addEventListener('click',()=>{smartMarkDone('missing');document.getElementById('missingFeedback').dataset.locked='0'});
+document.getElementById('choiceNext').addEventListener('click',()=>{smartMarkDone('choice');document.getElementById('choiceFeedback').dataset.locked='0'});
+document.getElementById('quizRestart').addEventListener('click',()=>{document.getElementById('quizFeedback').textContent='';});
+// Difficulty-aware sentence builder: 3, 5 or 7 words drawn from the current topic.
+const smartOldRenderBuilder=renderBuilder;
+renderBuilder=function(){smartOldRenderBuilder();let count={easy:3,hard:5,harder:7}[smartDifficulty()];let chosen=lesson.items.slice(0,count).map(x=>x[1].toLowerCase());let chosenWord=lesson.items[(buildIndex)%lesson.items.length][1].toLowerCase();let target=smartDifficulty()==='easy'?`I like ${chosenWord}.`:smartDifficulty()==='hard'?`I really like ${chosenWord} today.`:`I like ${chosenWord} because it is useful.`;document.getElementById('targetSentence').textContent=target.charAt(0).toUpperCase()+target.slice(1);window._buildTarget=target.toLowerCase().replace(/[.!?]/g,'');let bank=shuffle(target.replace(/[.!?]/g,'').split(' '));document.getElementById('wordBank').innerHTML=bank.map((w,i)=>`<button type="button" onclick="addBuildWord(${i},'${escapeText(w).replace(/'/g,"\\'")}')">${escapeText(w)}</button>`).join('');};
+const smartOldRenderMissing=renderMissing;
+renderMissing=function(){smartOldRenderMissing();let level=smartDifficulty();if(level==='harder')document.getElementById('missingQ').textContent+=' Explain your answer in a full sentence.';document.getElementById('missingFeedback').dataset.locked='0'};
+const smartOldRenderChoice=renderChoice;
+renderChoice=function(){smartOldRenderChoice();let level=smartDifficulty(),item=lesson.items[choiceIndex%7],count=level==='easy'?3:4,extra=lesson.items.filter((x,i)=>i!==choiceIndex%7).slice(0,count-1).map(x=>x[1]);let opts=shuffle([item[1],...extra]);document.getElementById('choiceQ').textContent=(level==='harder'?'Choose the best word and explain why: ':'Which word matches this meaning: ')+item[2];document.getElementById('choiceOptions').innerHTML=opts.map((o,i)=>`<button class="secondary" style="display:block;width:100%;text-align:left;margin:7px 0" onclick="markAnswer('choice','${escapeText(o)}','${escapeText(item[1])}')">${'ABCD'[i]}. ${escapeText(o)}</button>`).join('');document.getElementById('choiceFeedback').dataset.locked='0'};
+const smartOldRenderFlash=renderFlash;renderFlash=function(){smartOldRenderFlash();let d=smartDifficulty(),x=lesson.items[cardIndex];document.getElementById('flashMeaning').textContent=d==='easy'?'Say the word aloud.':d==='hard'?x[2]:lesson.sentences[cardIndex%lesson.sentences.length]};
+const smartOldBank=renderWordBank;renderWordBank=function(){smartOldBank();document.querySelector('#wordbank .meta').textContent=smartDifficulty()==='easy'?'Easy: recognise and say each topic word.':smartDifficulty()==='hard'?'Hard: tap a word to reveal its meaning.':'Harder: tap a word, then use it in a complete sentence.'};
+const smartOldPicture=renderPictureMatch;renderPictureMatch=function(){smartOldPicture();document.querySelector('#picturematch .meta').textContent=smartDifficulty()==='easy'?'Easy: match each picture to its word.':smartDifficulty()==='hard'?'Hard: match each picture and say the word clearly.':'Harder: match each picture, then describe it in a sentence.'};
+// Reset question lock when a new question is rendered.
+const smartOldShowQuiz=showQuiz;
+showQuiz=function(){smartOldShowQuiz();};
+// Rebuild progress and teacher banner after the initial page load.
+smartRenderExtras();
+
+</script>
+</body>
+</html>
