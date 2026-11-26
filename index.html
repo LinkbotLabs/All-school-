@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>P4 Practical English Speaking Programme — Weeks 1–15</title>
+<style>
+:root{--bg:#0b1220;--panel:#111c2e;--panel2:#17243a;--text:#edf4ff;--muted:#a8b7cc;--line:#2a3a53;--accent:#67e8f9;--accent2:#a5b4fc;--good:#86efac}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{padding:34px 20px 26px;background:linear-gradient(135deg,#172554,#0f172a 60%,#164e63);border-bottom:1px solid var(--line)}
+.wrap{max-width:1100px;margin:auto;padding:0 18px}h1{font-size:clamp(1.8rem,5vw,3rem);line-height:1.1;margin:0 0 10px}header p{color:#dbeafe;max-width:760px;margin:0}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.badge{border:1px solid #55708f;background:#10243d;border-radius:999px;padding:5px 11px;font-size:.85rem;color:#dbeafe}
+nav{position:sticky;top:0;z-index:5;background:#0b1220ed;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:10px 0}
+.tabs{display:flex;gap:8px;overflow-x:auto}.tabs button,.printbtn{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:9px 13px;border-radius:10px;white-space:nowrap;font-weight:650;cursor:pointer}.tabs button.active{background:#164e63;border-color:var(--accent);color:#ecfeff}
+main{padding:24px 0 50px}.intro,.lesson{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px}.intro h2,.lesson h2{margin:0 0 10px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.card{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px}.card h3{margin:0 0 7px;color:var(--accent)}.lesson{display:none}.lesson.active{display:block}.lesson h2{font-size:1.55rem}.sub{color:var(--accent2);font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.06em}
+h3{margin:20px 0 8px;font-size:1.08rem}ul,ol{padding-left:22px}li{margin:5px 0}.vocab{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px}.word{background:#0d192b;border:1px solid var(--line);border-radius:10px;padding:10px}.word b{display:block;color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:10px 0 16px}th,td{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}th{background:#1a2b43;color:#dbeafe}
+.phrase{background:#0d192b;border-left:3px solid var(--accent);padding:10px 13px;margin:8px 0;border-radius:0 8px 8px 0}
+.role{background:#0d192b;border:1px dashed #58708e;border-radius:12px;padding:13px;margin:9px 0}.role b{color:var(--good)}
+.challenge{background:#102b35;border:1px solid #256477;border-radius:12px;padding:14px;margin:12px 0}
+.small{font-size:.9rem;color:var(--muted)}.checklist label{display:block;margin:7px 0}.checklist input{accent-color:#67e8f9;margin-right:8px}
+footer{border-top:1px solid var(--line);padding:20px;color:var(--muted);text-align:center}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.printbtn{background:#164e63;border-color:#287b91}
+@media print{body{background:#fff;color:#111}.lesson{display:block!important;break-before:page;background:#fff;color:#111;border:0}.intro{background:#fff;color:#111}.card,.word,.role,.phrase,.challenge{background:#fff;color:#111;border:1px solid #aaa}header{background:#fff;color:#111;border-bottom:1px solid #aaa}header p,.muted,.small,footer{color:#333}nav,.actions{display:none}th{background:#eee;color:#111}td,th{border-color:#aaa}.badge{color:#111;background:#fff;border-color:#aaa}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="sub">P4 • Practical English Speaking Programme</div>
+<h1>Week 1: Real-Life English Challenges</h1>
+<p>Five different lessons for five classes. Students work in teams, make decisions, ask follow-up questions and communicate in realistic situations.</p>
+<div class="badges"><span class="badge">50 minutes per lesson</span><span class="badge">Student-led learning</span><span class="badge">Pair & group speaking</span><span class="badge">Seven key words per lesson</span></div>
+<div class="actions"><button class="printbtn" onclick="window.print()">Print / Save as PDF</button></div>
+</div></header>
+<nav><div class="wrap"><div class="tabs" role="tablist">
+<button class="active" onclick="showLesson(0,this)">P4/1 · Flights</button>
+<button onclick="showLesson(1,this)">P4/2 · Friends</button>
+<button onclick="showLesson(2,this)">P4/4 · Football</button>
+<button onclick="showLesson(3,this)">P4/6 · Holiday</button>
+<button onclick="showLesson(4,this)">P4/8 · Restaurant</button>
+</div></div></nav>
+<main class="wrap">
+<section class="intro">
+<h2>How to run every 50-minute lesson</h2>
+<div class="grid">
+<div class="card"><h3>0–5 min · Situation</h3>Introduce the real-life scenario. Ask students what they already know.</div>
+<div class="card"><h3>5–10 min · Language</h3>Teach or elicit the seven key words and useful expressions.</div>
+<div class="card"><h3>10–15 min · Challenge</h3>Explain the task, form groups and assign roles.</div>
+<div class="card"><h3>15–30 min · Prepare</h3>Students plan, research if permitted, practise and solve the challenge.</div>
+<div class="card"><h3>30–45 min · Perform</h3>Groups perform. Audience members listen and ask one question.</div>
+<div class="card"><h3>45–50 min · Improve</h3>Give brief feedback. Students repeat one improved line or explain their decision.</div>
+</div>
+<p class="small">Teacher role: set up the task, monitor, support when needed and give focused feedback. Aim for students to do most of the talking. Phone use is optional and should support the task rather than replace speaking.</p>
+</section>
+
+<section class="lesson active">
+<div class="sub">P4/1 · Week 1</div><h2>1. Booking a Flight</h2>
+<p><b>Real-life situation:</b> A customer needs to book a flight. A travel agent helps compare options, while a friend gives advice.</p>
+<p><b>Learning objectives:</b> Students can ask for travel information, compare choices, explain preferences and agree on a suitable flight.</p>
+<h3>Seven key vocabulary words</h3><div class="vocab">
+<div class="word"><b>Departure</b>The time a flight leaves.</div><div class="word"><b>Arrival</b>The time a flight reaches its destination.</div><div class="word"><b>Direct</b>A flight with no stops.</div><div class="word"><b>Stopover</b>A break between flights.</div><div class="word"><b>Baggage</b>Bags taken on a trip.</div><div class="word"><b>Budget</b>The money available to spend.</div><div class="word"><b>Available</b>Free to book or use.</div></div>
+<h3>Useful expressions</h3>
+<div class="phrase">“I’m looking for a flight to London.”</div><div class="phrase">“How much does it cost?”</div><div class="phrase">“Does the price include checked baggage?”</div><div class="phrase">“Is there a direct flight?”</div><div class="phrase">“I’d prefer the cheaper option because…”</div><div class="phrase">“That sounds like the best choice.”</div>
+<div class="challenge"><b>Team challenge:</b> Find or invent two possible Bangkok–London flight options. Choose the one that best matches the customer's needs. No booking or payment is required. If phones or internet are unavailable, use the sample options below.</div>
+<h3>Customer requirements</h3><ul><li>Budget: no more than 25,000 baht.</li><li>Departure: Friday.</li><li>Maximum one stopover.</li><li>Total journey: no more than 18 hours.</li><li>Must include checked baggage.</li><li>Must arrive before 6:00 p.m.</li></ul>
+<h3>Suggested roles (groups of three)</h3>
+<div class="role"><b>Customer:</b> Explain your needs. Ask at least four questions. Decide which flight suits you.</div>
+<div class="role"><b>Travel agent:</b> Offer two options. Explain price, departure, arrival, stopover and baggage. Ask what matters most to the customer.</div>
+<div class="role"><b>Friend:</b> Give advice. Ask about the customer's priorities and explain which option you recommend.</div>
+<h3>Sample flight options (use if no live research)</h3>
+<table><tr><th>Option</th><th>Price</th><th>Departure</th><th>Arrival</th><th>Stops</th><th>Baggage</th></tr>
+<tr><td>A</td><td>24,500 baht</td><td>Friday 09:00</td><td>Friday 23:30</td><td>1</td><td>Included</td></tr>
+<tr><td>B</td><td>21,000 baht</td><td>Friday 06:00</td><td>Friday 22:00</td><td>1</td><td>Not included</td></tr></table>
+<p class="small">These are fictional classroom examples, not real flight offers. Students should notice that both arrive after 6 p.m.; they can ask the agent to find another option.</p>
+<h3>Performance task</h3><ol><li>Perform a 2–3 minute booking conversation.</li><li>The customer must ask questions and make a final choice.</li><li>The group must explain why the chosen flight is best.</li></ol>
+<h3>Quick assessment</h3><div class="checklist"><label><input type="checkbox">Asked and answered relevant questions</label><label><input type="checkbox">Used travel vocabulary correctly</label><label><input type="checkbox">Compared options and gave reasons</label><label><input type="checkbox">Spoke clearly and responded naturally</label></div>
+</section>
+
+<section class="lesson">
+<div class="sub">P4/2 · Week 1</div><h2>2. Friends & Social Life</h2>
+<p><b>Real-life situation:</b> Friends are making plans for the weekend. One friend has a problem and the group must find a plan everyone can enjoy.</p>
+<p><b>Learning objectives:</b> Students can invite someone, make suggestions, agree or disagree politely, explain a problem and reach a group decision.</p>
+<h3>Seven key vocabulary words</h3><div class="vocab">
+<div class="word"><b>Invitation</b>A request to join an event.</div><div class="word"><b>Available</b>Free at a certain time.</div><div class="word"><b>Plan</b>An idea about what to do.</div><div class="word"><b>Suggest</b>To give an idea.</div><div class="word"><b>Prefer</b>To like one choice more.</div><div class="word"><b>Cancel</b>To decide an event will not happen.</div><div class="word"><b>Arrange</b>To organise something.</div></div>
+<h3>Useful expressions</h3><div class="phrase">“Are you free this Saturday?”</div><div class="phrase">“Would you like to come with us?”</div><div class="phrase">“How about going to…?”</div><div class="phrase">“I’d rather…”</div><div class="phrase">“That works for me.”</div><div class="phrase">“Sorry, I can’t because…”</div><div class="phrase">“Can we find another time?”</div>
+<div class="challenge"><b>Team challenge:</b> Arrange a weekend activity for a group of friends. You have a total budget of 5,000 baht. Everyone must agree on the plan.</div>
+<h3>Situation cards</h3><ul><li>Friend A wants to go to the cinema.</li><li>Friend B wants to play football but has only 500 baht.</li><li>Friend C has an exam on Monday and needs time to study.</li><li>Friend D is new to the group and wants to make friends.</li></ul>
+<h3>Suggested roles (groups of four)</h3>
+<div class="role"><b>Organiser:</b> Start the conversation, invite everyone and help the group decide.</div><div class="role"><b>Friend who loves sport:</b> Suggest a sports activity and explain why you like it.</div><div class="role"><b>Busy friend:</b> Explain your study commitment and suggest a suitable time.</div><div class="role"><b>New friend:</b> Ask questions, share an idea and help the group include everyone.</div>
+<h3>Performance task</h3><ol><li>Perform a natural conversation lasting 3 minutes.</li><li>Make at least three suggestions.</li><li>Agree on the activity, time, meeting place and budget.</li><li>Finish by confirming the plan.</li></ol>
+<h3>Quick assessment</h3><div class="checklist"><label><input type="checkbox">Made an invitation or suggestion</label><label><input type="checkbox">Responded politely to a different opinion</label><label><input type="checkbox">Asked follow-up questions</label><label><input type="checkbox">Helped the group reach an agreement</label></div>
+</section>
+
+<section class="lesson">
+<div class="sub">P4/4 · Week 1</div><h2>3. Football Fever</h2>
+<p><b>Real-life situation:</b> A team has lost an important match 3–2. A reporter interviews the coach and supporters to find out what happened.</p>
+<p><b>Learning objectives:</b> Students can describe a match, give opinions, explain reasons, ask interview questions and respond to different views.</p>
+<h3>Seven key vocabulary words</h3><div class="vocab">
+<div class="word"><b>Match</b>A game between two teams.</div><div class="word"><b>Score</b>The points or goals in a game.</div><div class="word"><b>Defend</b>To stop the other team scoring.</div><div class="word"><b>Attack</b>To try to score.</div><div class="word"><b>Referee</b>The person who controls the game.</div><div class="word"><b>Supporter</b>A person who cheers for a team.</div><div class="word"><b>Improve</b>To become better.</div></div>
+<h3>Useful expressions</h3><div class="phrase">“What did you think of the match?”</div><div class="phrase">“I think the team played well because…”</div><div class="phrase">“In my opinion, the defence was…”</div><div class="phrase">“The referee made a difficult decision.”</div><div class="phrase">“Our team needs to improve…”</div><div class="phrase">“Who was the best player, and why?”</div>
+<div class="challenge"><b>Team challenge:</b> Explain why the team lost 3–2 and present three ideas for improving before the next match. There is no single correct answer: support opinions with reasons.</div>
+<h3>Match report</h3><ul><li>Final score: Blue Tigers 2 – 3 Red Lions.</li><li>Blue Tigers scored first.</li><li>Red Lions scored twice in the second half.</li><li>A Blue Tigers player received a yellow card.</li><li>The final goal was scored in the last five minutes.</li></ul>
+<h3>Suggested roles (groups of four)</h3>
+<div class="role"><b>Sports reporter:</b> Ask at least four questions and introduce the interview.</div><div class="role"><b>Coach:</b> Explain what went wrong and name two things the team will practise.</div><div class="role"><b>Supporter:</b> Give an honest opinion about the match and your favourite player.</div><div class="role"><b>Player:</b> Describe how the team felt and what you will do differently next time.</div>
+<h3>Performance task</h3><ol><li>Present a 3-minute post-match interview.</li><li>Include opinions from at least three people.</li><li>End with three suggestions for the next match.</li></ol>
+<h3>Quick assessment</h3><div class="checklist"><label><input type="checkbox">Described match events clearly</label><label><input type="checkbox">Asked relevant interview questions</label><label><input type="checkbox">Gave an opinion with a reason</label><label><input type="checkbox">Responded to another person's opinion</label></div>
+</section>
+
+<section class="lesson">
+<div class="sub">P4/6 · Week 1</div><h2>4. Planning a Holiday</h2>
+<p><b>Real-life situation:</b> A group of friends wants to plan a short holiday. They have different interests and a limited budget.</p>
+<p><b>Learning objectives:</b> Students can discuss destinations, compare activities, talk about cost, make suggestions and agree on an itinerary.</p>
+<h3>Seven key vocabulary words</h3><div class="vocab">
+<div class="word"><b>Destination</b>The place you are going to.</div><div class="word"><b>Accommodation</b>A place to stay.</div><div class="word"><b>Itinerary</b>A plan for a trip.</div><div class="word"><b>Transport</b>A way to travel.</div><div class="word"><b>Explore</b>To visit and learn about a place.</div><div class="word"><b>Activities</b>Things to do.</div><div class="word"><b>Affordable</b>Not too expensive.</div></div>
+<h3>Useful expressions</h3><div class="phrase">“Where would you like to go?”</div><div class="phrase">“I’d rather visit…”</div><div class="phrase">“What can we do there?”</div><div class="phrase">“How much will it cost?”</div><div class="phrase">“That’s too expensive for our budget.”</div><div class="phrase">“Let’s make a plan.”</div>
+<div class="challenge"><b>Team challenge:</b> Plan a two-day, one-night trip in Thailand for four friends. Total budget: 8,000 baht for the group. Everyone must have at least one activity they enjoy.</div>
+<h3>Planning requirements</h3><ul><li>Choose a destination.</li><li>Decide how to travel there.</li><li>Choose accommodation.</li><li>Plan at least three activities.</li><li>Estimate the total cost and keep within budget.</li></ul>
+<h3>Suggested roles (groups of four)</h3>
+<div class="role"><b>Budget manager:</b> Check that the plan stays under 8,000 baht.</div><div class="role"><b>Adventure seeker:</b> Suggest exciting activities and explain your choices.</div><div class="role"><b>Relaxation fan:</b> Suggest relaxing activities and suitable accommodation.</div><div class="role"><b>Trip organiser:</b> Ask questions, keep the discussion moving and present the final itinerary.</div>
+<h3>Performance task</h3><ol><li>Present your holiday plan in 2–3 minutes.</li><li>Explain the destination, transport, accommodation and activities.</li><li>Give an estimated budget and explain why the trip suits the group.</li></ol>
+<h3>Quick assessment</h3><div class="checklist"><label><input type="checkbox">Suggested and compared destinations or activities</label><label><input type="checkbox">Used travel vocabulary</label><label><input type="checkbox">Explained costs and choices</label><label><input type="checkbox">Worked towards a group decision</label></div>
+</section>
+
+<section class="lesson">
+<div class="sub">P4/8 · Week 1</div><h2>5. Restaurant Experience</h2>
+<p><b>Real-life situation:</b> Friends are eating at a restaurant. They need to order food, ask about the menu and solve a small problem politely.</p>
+<p><b>Learning objectives:</b> Students can order food, ask about ingredients, make requests, explain a problem and respond politely.</p>
+<h3>Seven key vocabulary words</h3><div class="vocab">
+<div class="word"><b>Menu</b>A list of food and drinks.</div><div class="word"><b>Order</b>To ask for food or drink.</div><div class="word"><b>Ingredients</b>The foods used to make a dish.</div><div class="word"><b>Recommend</b>To suggest something good.</div><div class="word"><b>Bill</b>The money you must pay.</div><div class="word"><b>Spicy</b>Having a hot, strong taste.</div><div class="word"><b>Allergy</b>A bad reaction to a food or substance.</div></div>
+<h3>Useful expressions</h3><div class="phrase">“Could we see the menu, please?”</div><div class="phrase">“What would you recommend?”</div><div class="phrase">“Does this dish contain…?”</div><div class="phrase">“I’d like to order…”</div><div class="phrase">“Could I have this without chilli, please?”</div><div class="phrase">“Excuse me, I think there’s been a mistake.”</div><div class="phrase">“Could we have the bill, please?”</div>
+<div class="challenge"><b>Team challenge:</b> Act out a restaurant visit. The group has 1,000 baht to spend. One customer has a food allergy, and one order arrives incorrectly. Solve both problems politely.</div>
+<h3>Classroom menu</h3>
+<table><tr><th>Food / drink</th><th>Price</th></tr><tr><td>Fried rice</td><td>90 baht</td></tr><tr><td>Chicken noodles</td><td>100 baht</td></tr><tr><td>Vegetable salad</td><td>80 baht</td></tr><tr><td>Grilled chicken</td><td>150 baht</td></tr><tr><td>Fruit smoothie</td><td>60 baht</td></tr><tr><td>Water</td><td>20 baht</td></tr><tr><td>Ice cream</td><td>50 baht</td></tr></table>
+<h3>Suggested roles (groups of four)</h3>
+<div class="role"><b>Waiter:</b> Welcome the customers, explain the menu and take the order.</div><div class="role"><b>Customer 1:</b> Ask for a recommendation and order a meal.</div><div class="role"><b>Customer 2:</b> Explain that you have a food allergy. Ask clear questions before ordering.</div><div class="role"><b>Customer 3:</b> Explain politely that your order is incorrect and ask for help.</div>
+<h3>Performance task</h3><ol><li>Perform a 3-minute restaurant conversation.</li><li>Include a greeting, menu questions, food orders and the bill.</li><li>Resolve the allergy and incorrect-order situations politely.</li></ol>
+<h3>Quick assessment</h3><div class="checklist"><label><input type="checkbox">Ordered food and asked menu questions</label><label><input type="checkbox">Used polite requests</label><label><input type="checkbox">Explained a problem clearly</label><label><input type="checkbox">Responded helpfully and naturally</label></div>
+</section>
+
+<section class="intro">
+<h2>Teacher's end-of-week reflection</h2>
+<div class="checklist"><label><input type="checkbox">Most students spoke during the lesson</label><label><input type="checkbox">Students used the target expressions in context</label><label><input type="checkbox">The challenge was achievable and engaging</label><label><input type="checkbox">I identified students who need more speaking support</label></div>
+<p class="small">Next week, the topics rotate: P4/1 Friends & Social Life · P4/2 Football Fever · P4/4 Planning a Holiday · P4/6 Restaurant Experience · P4/8 Booking a Flight.</p>
+</section>
+
+<section class="intro" id="programme">
+<h2>15-week programme & class completion tracker</h2>
+<p class="muted">Each class studies all 15 topics in a different order. Tick a box when that class completes the lesson. Progress is saved in this browser on this device.</p>
+<div class="challenge"><b>Lesson completion indicator:</b> ⬜ Not completed &nbsp; <span style="color:#86efac">☑ Completed</span>. Each class has 15 checkboxes, one for each topic.</div>
+<div id="progressSummary" class="grid" aria-live="polite"></div>
+<h3>Weeks 1–5 · Block 1</h3><p class="small">Travel, friendships, football, holidays and restaurants.</p>
+<table class="schedule"><tr><th>Class</th><th>W1</th><th>W2</th><th>W3</th><th>W4</th><th>W5</th></tr>
+<tr><th>P4/1</th><td>Flights</td><td>Friends</td><td>Football</td><td>Holiday</td><td>Restaurant</td></tr>
+<tr><th>P4/2</th><td>Friends</td><td>Football</td><td>Holiday</td><td>Restaurant</td><td>Flights</td></tr>
+<tr><th>P4/4</th><td>Football</td><td>Holiday</td><td>Restaurant</td><td>Flights</td><td>Friends</td></tr>
+<tr><th>P4/6</th><td>Holiday</td><td>Restaurant</td><td>Flights</td><td>Friends</td><td>Football</td></tr>
+<tr><th>P4/8</th><td>Restaurant</td><td>Flights</td><td>Friends</td><td>Football</td><td>Holiday</td></tr></table>
+<h3>Weeks 6–10 · Block 2</h3><p class="small">Modern life, communication, work and technology.</p>
+<table class="schedule"><tr><th>Class</th><th>W6</th><th>W7</th><th>W8</th><th>W9</th><th>W10</th></tr>
+<tr><th>P4/1</th><td>Social Media</td><td>Shopping</td><td>Job Interviews</td><td>Breaking News</td><td>Technology & AI</td></tr>
+<tr><th>P4/2</th><td>Shopping</td><td>Job Interviews</td><td>Breaking News</td><td>Technology & AI</td><td>Social Media</td></tr>
+<tr><th>P4/4</th><td>Job Interviews</td><td>Breaking News</td><td>Technology & AI</td><td>Social Media</td><td>Shopping</td></tr>
+<tr><th>P4/6</th><td>Breaking News</td><td>Technology & AI</td><td>Social Media</td><td>Shopping</td><td>Job Interviews</td></tr>
+<tr><th>P4/8</th><td>Technology & AI</td><td>Social Media</td><td>Shopping</td><td>Job Interviews</td><td>Breaking News</td></tr></table>
+<h3>Weeks 11–15 · Block 3</h3><p class="small">Travel problems, hospitality, creativity, opinions and the final speaking challenge.</p>
+<table class="schedule"><tr><th>Class</th><th>W11</th><th>W12</th><th>W13</th><th>W14</th><th>W15</th></tr>
+<tr><th>P4/1</th><td>Airport Problems</td><td>Starting a Business</td><td>Hotel Reception</td><td>Big Debate</td><td>Ultimate Challenge</td></tr>
+<tr><th>P4/2</th><td>Starting a Business</td><td>Hotel Reception</td><td>Big Debate</td><td>Ultimate Challenge</td><td>Airport Problems</td></tr>
+<tr><th>P4/4</th><td>Hotel Reception</td><td>Big Debate</td><td>Ultimate Challenge</td><td>Airport Problems</td><td>Starting a Business</td></tr>
+<tr><th>P4/6</th><td>Big Debate</td><td>Ultimate Challenge</td><td>Airport Problems</td><td>Starting a Business</td><td>Hotel Reception</td></tr>
+<tr><th>P4/8</th><td>Ultimate Challenge</td><td>Airport Problems</td><td>Starting a Business</td><td>Hotel Reception</td><td>Big Debate</td></tr></table>
+<h3>Class-by-class lesson completion</h3><p class="small">Tick the box after the lesson. A green box means completed. The counter shows how many lessons each class has finished.</p>
+<div id="tracker"></div>
+<button class="printbtn" type="button" id="resetTracker">Reset all completion ticks</button>
+<p class="small" id="trackerStatus" aria-live="polite"></p>
+</section>
+<style>
+.schedule{font-size:.84rem}.schedule td,.schedule th{min-width:88px}.tracker-class{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}.tracker-class h4{margin:0 0 9px;color:var(--accent)}.tracker-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.tracker-item{background:#0d192b;border:1px solid var(--line);border-radius:9px;padding:8px;font-size:.82rem}.tracker-item label{display:flex;gap:6px;align-items:flex-start;cursor:pointer}.tracker-item input{accent-color:#22c55e;margin-top:3px}.tracker-item.done{border-color:#3b8b63;background:#102b25}.progressbar{height:8px;background:#26364b;border-radius:9px;overflow:hidden;margin-top:8px}.progressbar span{display:block;height:100%;background:#4ade80}
+@media(max-width:600px){.schedule{font-size:.72rem}.schedule td,.schedule th{min-width:78px;padding:5px}.tracker-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+<script>
+(function(){
+const classes=["P4/1","P4/2","P4/4","P4/6","P4/8"];
+const blocks=[
+["Booking a Flight","Friends & Social Life","Football Fever","Planning a Holiday","Restaurant Experience"],
+["Social Media","Shopping Challenge","Job Interviews","Breaking News","Technology & AI"],
+["Airport Problems","Starting a Business","Hotel Reception","The Big Debate","Ultimate Challenge"]
+];
+const key="p4SpeakingProgrammeCompletion_v1";let state={};
+try{state=JSON.parse(localStorage.getItem(key)||"{}")||{}}catch(e){state={}}
+const tracker=document.getElementById("tracker"),summary=document.getElementById("progressSummary"),status=document.getElementById("trackerStatus");
+function topic(ci,wi){return blocks[Math.floor(wi/5)][(wi%5+ci)%5]}
+function save(){try{localStorage.setItem(key,JSON.stringify(state))}catch(e){status.textContent="Browser storage unavailable; progress may not persist after closing this page."}}
+function render(){
+tracker.innerHTML="";summary.innerHTML="";
+classes.forEach((name,ci)=>{
+let done=0;for(let wi=0;wi<15;wi++)if(state[name+"-"+wi])done++;
+const card=document.createElement("div");card.className="card";card.innerHTML="<h3>"+name+"</h3><b>"+done+" / 15 completed</b><div class='progressbar'><span style='width:"+(done/15*100)+"%'></span></div>";summary.appendChild(card);
+const group=document.createElement("div");group.className="tracker-class";const h=document.createElement("h4");h.textContent=name+" — "+done+"/15 completed";group.appendChild(h);
+const grid=document.createElement("div");grid.className="tracker-grid";
+for(let wi=0;wi<15;wi++){const box=document.createElement("input");box.type="checkbox";box.checked=!!state[name+"-"+wi];box.setAttribute("aria-label",name+" week "+(wi+1)+" "+topic(ci,wi)+" completed");
+const label=document.createElement("label");label.className="tracker-item"+(box.checked?" done":"");const span=document.createElement("span");span.textContent="Week "+(wi+1)+": "+topic(ci,wi);label.append(box,span);box.addEventListener("change",()=>{state[name+"-"+wi]=box.checked;save();render()});grid.appendChild(label)}
+group.appendChild(grid);tracker.appendChild(group);
+});
+status.textContent=Object.values(state).filter(Boolean).length+" of 75 class lessons marked complete.";
+}
+document.getElementById("resetTracker").addEventListener("click",()=>{if(confirm("Clear all 75 completion ticks?")){state={};save();render()}});
+render();
+})();
+</script>
+
+<section class="intro" id="additional-lessons">
+<h2>Complete lesson plans: Weeks 6–15</h2>
+<p class="muted">These are the ten additional ready-to-teach topic lessons missing from the earlier version. Use each topic with whichever class is scheduled for it that week. Each lesson follows the same 50-minute structure used in Weeks 1–5.</p>
+<div class="challenge"><b>50-minute lesson flow:</b> 0–5 introduce the situation · 5–10 teach the seven words and phrases · 10–15 explain roles and challenge · 15–30 group preparation · 30–45 performances · 45–50 feedback and reflection.</div>
+<div id="topicProgress" class="grid" aria-live="polite"></div>
+<div id="extraLessons">
+<article class="card extra-topic"><div class="sub">Practical speaking lesson</div><h2>6. Social Media</h2><p><b>Learning objective:</b> Students discuss safe and responsible social media use and create a short positive post.</p><h3>Seven key vocabulary words</h3><div class="vocab"><div class="word"><b>Profile</b></div><div class="word"><b> Follower</b></div><div class="word"><b> Post</b></div><div class="word"><b> Comment</b></div><div class="word"><b> Share</b></div><div class="word"><b> Privacy</b></div><div class="word"><b> Responsible</b></div></div><h3>Useful expressions</h3><div class="phrase">“What do you usually post?”</div><div class="phrase">“I think we should protect our privacy.”</div><div class="phrase">“I agree because…”</div><div class="phrase">“I would not share that online.”</div><h3>Suggested roles</h3><div class="role"><b>Content creator:</b> introduce a positive post.</div><div class="role"><b>Safety adviser:</b> explain two privacy rules.</div><div class="role"><b>Audience member:</b> ask questions and give feedback.</div><div class="challenge"><b>Group challenge:</b> Create a 30-second campaign encouraging students to use social media positively. Include one helpful message and two safety tips.</div><h3>Final speaking task</h3><p>Give a 60-second presentation: What is your message, who is it for, and how can people stay safe?</p><label class="done-topic"><input type="checkbox" class="topic-done" data-topic="6. Social Media"> <b>Topic completed</b> — tick when the class has finished this lesson.</label></article><article class="card extra-topic"><div class="sub">Practical speaking lesson</div><h2>7. Shopping Challenge</h2><p><b>Learning objective:</b> Students compare products, ask about prices and make a sensible purchase within a budget.</p><h3>Seven key vocabulary words</h3><div class="vocab"><div class="word"><b>Price</b></div><div class="word"><b> Discount</b></div><div class="word"><b> Receipt</b></div><div class="word"><b> Size</b></div><div class="word"><b> Quality</b></div><div class="word"><b> Expensive</b></div><div class="word"><b> Affordable</b></div></div><h3>Useful expressions</h3><div class="phrase">“How much does this cost?”</div><div class="phrase">“Is there a discount?”</div><div class="phrase">“Which one is better value?”</div><div class="phrase">“I’ll take this one because…”</div><h3>Suggested roles</h3><div class="role"><b>Shop assistant:</b> explain the products and prices.</div><div class="role"><b>Customer:</b> choose what to buy and ask questions.</div><div class="role"><b>Budget keeper:</b> make sure the group stays within budget.</div><div class="challenge"><b>Group challenge:</b> You have 2,000 baht to buy a school bag, shoes and a water bottle. Compare options and stay within budget.</div><h3>Final speaking task</h3><p>Present your shopping choices and explain why they are good value.</p><label class="done-topic"><input type="checkbox" class="topic-done" data-topic="7. Shopping Challenge"> <b>Topic completed</b> — tick when the class has finished this lesson.</label></article><article class="card extra-topic"><div class="sub">Practical speaking lesson</div><h2>8. Job Interviews</h2><p><b>Learning objective:</b> Students practise introducing themselves, describing strengths and answering simple interview questions.</p><h3>Seven key vocabulary words</h3><div class="vocab"><div class="word"><b>Interview</b></div><div class="word"><b> Experience</b></div><div class="word"><b> Skills</b></div><div class="word"><b> Confident</b></div><div class="word"><b> Strength</b></div><div class="word"><b> Responsible</b></div><div class="word"><b> Opportunity</b></div></div><h3>Useful expressions</h3><div class="phrase">“Tell me about yourself.”</div><div class="phrase">“I am good at…”</div><div class="phrase">“One of my strengths is…”</div><div class="phrase">“Why should we choose you?”</div><h3>Suggested roles</h3><div class="role"><b>Interviewer:</b> ask four interview questions.</div><div class="role"><b>Applicant:</b> answer clearly and give examples.</div><div class="role"><b>Observer:</b> listen and give one positive suggestion.</div><div class="challenge"><b>Group challenge:</b> Interview for a weekend helper job at a bookshop or sports shop. The applicant must explain why they are suitable.</div><h3>Final speaking task</h3><p>Perform a short interview and finish with the interviewer saying whether the applicant got the job and why.</p><label class="done-topic"><input type="checkbox" class="topic-done" data-topic="8. Job Interviews"> <b>Topic completed</b> — tick when the class has finished this lesson.</label></article><article class="card extra-topic"><div class="sub">Practical speaking lesson</div><h2>9. Breaking News</h2><p><b>Learning objective:</b> Students report a made-up school or community news story clearly and distinguish facts from opinions.</p><h3>Seven key vocabulary words</h3><div class="vocab"><div class="word"><b>Reporter</b></div><div class="word"><b> Headline</b></div><div class="word"><b> Event</b></div><div class="word"><b> Witness</b></div><div class="word"><b> Interview</b></div><div class="word"><b> Fact</b></div><div class="word"><b> Opinion</b></div></div><h3>Useful expressions</h3><div class="phrase">“This is breaking news.”</div><div class="phrase">“What happened?”</div><div class="phrase">“According to a witness…”</div><div class="phrase">“We have not confirmed that yet.”</div><h3>Suggested roles</h3><div class="role"><b>News presenter:</b> introduce the story.</div><div class="role"><b>Reporter:</b> describe what happened and where.</div><div class="role"><b>Witness:</b> explain what you saw.</div><div class="role"><b>Editor:</b> check that the report is clear and sensible.</div><div class="challenge"><b>Group challenge:</b> Create a short news report about a fictional school event, such as a lost-and-found day, sports day or a surprise visitor. Do not present it as real news.</div><h3>Final speaking task</h3><p>Deliver a 60–90 second news report with a headline, two facts and one interview.</p><label class="done-topic"><input type="checkbox" class="topic-done" data-topic="9. Breaking News"> <b>Topic completed</b> — tick when the class has finished this lesson.</label></article><article class="card extra-topic"><div class="sub">Practical speaking lesson</div><h2>10. Technology & AI</h2><p><b>Learning objective:</b> Students explain how technology can help people and discuss safe, fair use of AI.</p><h3>Seven key vocabulary words</h3><div class="vocab"><div class="word"><b>Technology</b></div><div class="word"><b> Device</b></div><div class="word"><b> Artificial Intelligence</b></div><div class="word"><b> Useful</b></div><div class="word"><b> Accurate</b></div><div class="word"><b> Create</b></div><div class="word"><b> Check</b></div></div><h3>Useful expressions</h3><div class="phrase">“I use technology to…”</div><div class="phrase">“AI can help us…”</div><div class="phrase">“We should check the information.”</div><div class="phrase">“A disadvantage is…”</div><h3>Suggested roles</h3><div class="role"><b>Student:</b> explain a way you use technology.</div><div class="role"><b>AI assistant:</b> describe a helpful use and a limitation.</div><div class="role"><b>Fact checker:</b> explain why information should be checked.</div><div class="role"><b>Parent/teacher:</b> ask about safe use.</div><div class="challenge"><b>Group challenge:</b> Design a classroom guide: three helpful uses of technology or AI and three rules for using it safely and honestly. Do not enter personal information into AI tools.</div><h3>Final speaking task</h3><p>Present your guide and explain one benefit and one risk.</p><label class="done-topic"><input type="checkbox" class="topic-done" data-topic="10. Technology & AI"> <b>Topic completed</b> — tick when the class has finished this lesson.</label></article><article class="card extra-topic"><div class="sub">Practical speaking lesson</div><h2>11. Airport Problems</h2><p><b>Learning objective:</b> Students explain a travel problem, ask for assistance and suggest a solution politely.</p><h3>Seven key vocabulary words</h3><div class="vocab"><div class="word"><b>Boarding Pass</b></div><div class="word"><b> Passport</b></div><div class="word"><b> Luggage</b></div><div class="word"><b> Delayed</b></div><div class="word"><b> Gate</b></div><div class="word"><b> Assistance</b></div><div class="word"><b> Solution</b></div></div><h3>Useful expressions</h3><div class="phrase">“Excuse me, I need some help.”</div><div class="phrase">“My flight has been delayed.”</div><div class="phrase">“I can’t find my luggage.”</div><div class="phrase">“What should I do next?”</div><h3>Suggested roles</h3><div class="role"><b>Passenger:</b> explain the problem.</div><div class="role"><b>Airport staff:</b> ask questions and offer help.</div><div class="role"><b>Travel companion:</b> support the passenger and clarify details.</div><div class="challenge"><b>Group challenge:</b> Choose one problem: missing luggage, a delayed flight or a missed boarding gate. Work together to find a safe, realistic solution.</div><h3>Final speaking task</h3><p>Act out the problem and solution in a 2–3 minute airport conversation.</p><label class="done-topic"><input type="checkbox" class="topic-done" data-topic="11. Airport Problems"> <b>Topic completed</b> — tick when the class has finished this lesson.</label></article><article class="card extra-topic"><div class="sub">Practical speaking lesson</div><h2>12. Starting a Business</h2><p><b>Learning objective:</b> Students create a simple business idea, identify customers and explain what makes it useful.</p><h3>Seven key vocabulary words</h3><div class="vocab"><div class="word"><b>Business</b></div><div class="word"><b> Customer</b></div><div class="word"><b> Product</b></div><div class="word"><b> Service</b></div><div class="word"><b> Cost</b></div><div class="word"><b> Price</b></div><div class="word"><b> Profit</b></div></div><h3>Useful expressions</h3><div class="phrase">“Our business is called…”</div><div class="phrase">“Our customers are…”</div><div class="phrase">“It costs … to make.”</div><div class="phrase">“We think people will buy it because…”</div><h3>Suggested roles</h3><div class="role"><b>Business owner:</b> explain the idea.</div><div class="role"><b>Marketing manager:</b> describe the customers and promotion.</div><div class="role"><b>Finance manager:</b> set a simple cost and price.</div><div class="role"><b>Customer:</b> ask questions and give feedback.</div><div class="challenge"><b>Group challenge:</b> Invent a small school-friendly business with a starting budget of 1,000 baht. Decide what you sell, who will buy it and how much it costs.</div><h3>Final speaking task</h3><p>Pitch your business in one minute. Explain the product, customer and price.</p><label class="done-topic"><input type="checkbox" class="topic-done" data-topic="12. Starting a Business"> <b>Topic completed</b> — tick when the class has finished this lesson.</label></article><article class="card extra-topic"><div class="sub">Practical speaking lesson</div><h2>13. Hotel Reception</h2><p><b>Learning objective:</b> Students check in, ask for information and politely solve a hotel-room problem.</p><h3>Seven key vocabulary words</h3><div class="vocab"><div class="word"><b>Reservation</b></div><div class="word"><b> Reception</b></div><div class="word"><b> Available</b></div><div class="word"><b> Booking</b></div><div class="word"><b> Key Card</b></div><div class="word"><b> Facilities</b></div><div class="word"><b> Complaint</b></div></div><h3>Useful expressions</h3><div class="phrase">“I have a reservation.”</div><div class="phrase">“Could I check in, please?”</div><div class="phrase">“What time is breakfast?”</div><div class="phrase">“There seems to be a problem with my room.”</div><h3>Suggested roles</h3><div class="role"><b>Receptionist:</b> welcome the guest and check the booking.</div><div class="role"><b>Guest:</b> check in and ask about facilities.</div><div class="role"><b>Guest 2:</b> explain a room problem politely.</div><div class="challenge"><b>Group challenge:</b> Role-play a hotel check-in. The booking is for two nights, but the room is not ready. Find a helpful solution.</div><h3>Final speaking task</h3><p>Perform the check-in and resolve the problem politely.</p><label class="done-topic"><input type="checkbox" class="topic-done" data-topic="13. Hotel Reception"> <b>Topic completed</b> — tick when the class has finished this lesson.</label></article><article class="card extra-topic"><div class="sub">Practical speaking lesson</div><h2>14. The Big Debate</h2><p><b>Learning objective:</b> Students express opinions, give reasons, listen respectfully and respond to another viewpoint.</p><h3>Seven key vocabulary words</h3><div class="vocab"><div class="word"><b>Opinion</b></div><div class="word"><b> Agree</b></div><div class="word"><b> Disagree</b></div><div class="word"><b> Reason</b></div><div class="word"><b> Example</b></div><div class="word"><b> Advantage</b></div><div class="word"><b> Disadvantage</b></div></div><h3>Useful expressions</h3><div class="phrase">“In my opinion…”</div><div class="phrase">“I agree because…”</div><div class="phrase">“I see your point, but…”</div><div class="phrase">“Can you give an example?”</div><h3>Suggested roles</h3><div class="role"><b>Speaker A:</b> support the statement.</div><div class="role"><b>Speaker B:</b> challenge the statement respectfully.</div><div class="role"><b>Chairperson:</b> give each speaker time and invite questions.</div><div class="role"><b>Audience:</b> ask one relevant question.</div><div class="challenge"><b>Group challenge:</b> Debate one statement: “Students should have less homework” or “Mobile phones should be allowed at school.” Give reasons and examples; disagree politely.</div><h3>Final speaking task</h3><p>Each side gives an opening statement, two reasons and a closing statement.</p><label class="done-topic"><input type="checkbox" class="topic-done" data-topic="14. The Big Debate"> <b>Topic completed</b> — tick when the class has finished this lesson.</label></article><article class="card extra-topic"><div class="sub">Practical speaking lesson</div><h2>15. Ultimate Speaking Challenge</h2><p><b>Learning objective:</b> Students combine communication skills from the programme to solve an unfamiliar real-life challenge.</p><h3>Seven key vocabulary words</h3><div class="vocab"><div class="word"><b>Challenge</b></div><div class="word"><b> Negotiate</b></div><div class="word"><b> Decide</b></div><div class="word"><b> Explain</b></div><div class="word"><b> Recommend</b></div><div class="word"><b> Solution</b></div><div class="word"><b> Present</b></div></div><h3>Useful expressions</h3><div class="phrase">“What do we need to decide?”</div><div class="phrase">“I suggest that we…”</div><div class="phrase">“What if…?”</div><div class="phrase">“Our final decision is…”</div><h3>Suggested roles</h3><div class="role"><b>Team leader:</b> organise the discussion.</div><div class="role"><b>Researcher/planner:</b> collect or organise information.</div><div class="role"><b>Problem solver:</b> respond to a surprise change.</div><div class="role"><b>Presenter:</b> explain the final decision.</div><div class="challenge"><b>Group challenge:</b> Plan a one-day school festival with a budget of 10,000 baht. Halfway through, the budget is reduced to 7,000 baht. Adapt the plan and agree on priorities.</div><h3>Final speaking task</h3><p>Present the final plan, explain the changes and answer two questions from the class.</p><label class="done-topic"><input type="checkbox" class="topic-done" data-topic="15. Ultimate Speaking Challenge"> <b>Topic completed</b> — tick when the class has finished this lesson.</label></article></div><p class="small" id="extraStatus" aria-live="polite"></p>
+</section>
+<style>
+.extra-topic{margin:14px 0}.extra-topic h2{color:var(--accent);margin-top:5px}.done-topic{display:block;margin-top:15px;padding:12px;background:#102b25;border:1px solid #3b8b63;border-radius:10px}.done-topic input{accent-color:#4ade80;transform:scale(1.2);margin-right:8px}
+</style>
+<script>
+(function(){const key='p4ExtraTopicDone_v1';let done={};try{done=JSON.parse(localStorage.getItem(key)||'{}')||{}}catch(e){}const boxes=[...document.querySelectorAll('.topic-done input')];const summary=document.getElementById('topicProgress');const status=document.getElementById('extraStatus');function render(){summary.innerHTML='';boxes.forEach(b=>{b.checked=!!done[b.dataset.topic]});const n=boxes.filter(b=>done[b.dataset.topic]).length;const c=document.createElement('div');c.className='card';c.innerHTML='<h3>Weeks 6–15 topic progress</h3><b>'+n+' / 10 topics completed</b><div class="progressbar"><span style="width:'+(n*10)+'%"></span></div>';summary.appendChild(c);status.textContent=n+' of 10 additional topics marked complete. Progress is saved in this browser on this device.'}boxes.forEach(b=>b.addEventListener('change',()=>{done[b.dataset.topic]=b.checked;try{localStorage.setItem(key,JSON.stringify(done))}catch(e){}render()}));render()})();
+</script>
+
+</main>
+<footer>Practical English Speaking Programme · Weeks 1–15 · P4</footer>
+<script>
+function showLesson(index,button){
+ document.querySelectorAll('.lesson').forEach((el,i)=>el.classList.toggle('active',i===index));
+ document.querySelectorAll('.tabs button').forEach(el=>el.classList.remove('active'));
+ button.classList.add('active');
+ window.scrollTo({top:document.querySelector('main').offsetTop-60,behavior:'smooth'});
+}
+</script>
+</body></html>
